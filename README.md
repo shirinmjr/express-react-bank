@@ -14,13 +14,13 @@ Here are just a few of the benefits of banking with the Completely Unsecure Bank
 Call to action:
 
 # V1
-1 - One user total (I'll see if youser can login)
-2 - user can create maximum 4 different accouts (Saving / chaking)
-3- User can diposit to all of their account (cash,check)
-4 - user can transfer money from one account to another account
-5 - user cna only withddra from Cheking account.
-6 - user can delete their account but they need to transfer the balance before that
-7 - there should be a log of transactions for each account (the most challenging part)
+1. One user total (I'll see if youser can login)
+2. User can create maximum 4 different accouts (Saving / chaking)
+3. Uer can diposit to all of their account (cash,check)
+4. User can transfer money from one account to another account
+5. User cna only withddra from Cheking account.
+6. User can delete their account but they need to transfer the balance before that
+7. There should be a log of transactions for each account (the most challenging part)
 
 
 ## Streach goeal
