@@ -112,9 +112,6 @@ Database Structure
 
 <p align="center">
  <img width=400px src="./readmefiles/designimg/data_structure_img.png" alt="v1-data-structure">
-</p>
-
-<p align="center">
  <img width=400px src="./readmefiles/designimg/v1-basicUI.png" alt="v1-basic-ui">
 </p>
 
