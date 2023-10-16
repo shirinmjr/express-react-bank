@@ -25,7 +25,7 @@
 ## 📝 Table of Contents
 
 - [About](#about)
-- [Versioning](#versions)
+- [Versions:](#versions)
   - 🔧 [V1](#v1)
   - 🔧 [V2](#v2)
 - [Authors](#authors)
