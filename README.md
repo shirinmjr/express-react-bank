@@ -108,11 +108,10 @@ module.exports = db;
 5. User cna only from Checking account.
 6. User can delete their account but they need to transfer the balance before that. Balance need to be 0 before request to close an account
 
-Database Structure
-
+Previews:
 <p align="center">
- <img width=400px src="./readmefiles/designimg/data_structure_img.png" alt="v1-data-structure">
- <img  src="./readmefiles/designimg/v1-basicUI.png" alt="v1-basic-ui">
+ <img width=200px src="./readmefiles/designimg/data_structure_img.png" alt="v1-data-structure">
+ <img width=500px src="./readmefiles/designimg/v1-basicUI.png" alt="v1-basic-ui">
 </p>
 
 ## 🔧 V2 <a name = "#v2"></a>
