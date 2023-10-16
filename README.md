@@ -1,36 +1,123 @@
-### # express-mongo-bank
+<p align="center">
+  <a href="" rel="noopener">
+ <img width=200px height=200px src="./readmefiles/img/bank.png" alt="Project logo"></a>
+</p>
 
-# A completely unsecure bank
-Are you tired of banks with annoying security measures? Want a bank where you can deposit and withdraw money whenever you want, without any hassle?
+<h3 align="center">Mongo Express Bank</h3>
 
-Then check out the Completely Unsecure Bank!
+<div align="center">
 
-Here are just a few of the benefits of banking with the Completely Unsecure Bank:
-* We have no security measures, but we offer convenience, accessibility, flexibility, and random deposits from some unknown payroll company! *
-- Convenience: We have branches all over the world, and we're open 24 hours a day, 7 days a week. So you can bank with us whenever and wherever you need to.
-- Accessibility: We don't require any identification or paperwork to open an account. Just walk in and give us your money.)
-- Flexibility: We don't have any minimum balance requirements or fees. So you can bank with us even if you don't have a lot of money.
-- Random deposits: You never know when or how much money you'll receive from the Cayman Payrolls secured by the L-A-W payroll company, but it's always a nice surprise!
-Call to action:
+[![Status](https://img.shields.io/badge/status-active-success.svg)](active)
+[![GitHub Issues](https://img.shields.io/github/issues/kylelobo/The-Documentation-Compendium.svg)](https://github.com/kylelobo/The-Documentation-Compendium/issues)
+[![GitHub Pull Requests](https://img.shields.io/github/issues-pr/kylelobo/The-Documentation-Compendium.svg)](https://github.com/kylelobo/The-Documentation-Compendium/pulls)
+[![License](https://img.shields.io/badge/license-MIT-blue.svg)](/LICENSE)
 
-# V1
-1. One user total (I'll see if youser can login)
-2. User can create maximum 4 different accouts (Saving / chaking)
-3. Uer can diposit to all of their account (cash,check)
+</div>
+
+---
+
+# express-mongo-bank
+
+<p align="center"> Bank System Experimenting with Express and MongoDB
+    <br> 
+</p>
+
+## 📝 Table of Contents
+
+- [About](#about)
+- [Versioning](#versions)
+  - 🔧 [V1](#v1)
+  - 🔧 [V2](#v2)
+- [Authors](#authors)
+- [Acknowledgments](#acknowledgement)
+
+# Mongo Express Bank
+
+This is a experimental project to create a full CRUD app. To do so, we're experimenting with a banking system in which user can:
+
+- Create accounts(Saving and Checking) - Create
+- Deposit Funds - Update
+- Withdraw Funds - Update
+- Close an account - Delete
+- Keep and display the logs of activities - Create
+
+### Stretch Goals - it's always a nice surprise!
+
+## ⛏️ Built Using <a name = "built_using"></a>
+
+- [MongoDB](https://www.mongodb.com/) - Database
+- [Express](https://expressjs.com/) - Server Framework
+- [VueJs](https://vuejs.org/) - Web Framework
+- [NodeJs](https://nodejs.org/en/) - Server Environment
+
+Random deposits: Receiving a random payrolls deposit.
+
+# Setups:
+
+```sh
+npm init -y
+npm i cors express mongoose morgan
+touch server.js //server route
+touch .ignore //add node_modules
+```
+
+Update your Scripts block in your package.json
+
+```json
+  "scripts": {
+    "start": "node server.js",
+    "dev": "nodemon server.js"
+  },
+```
+
+config/db file,
+
+```js
+const mongoose = require("mongoose");
+
+mongoose
+  .connect("mongodb://127.0.0.1:27017/mongoBankExpress")
+  .then(() => {
+    console.log("Successfully connected to MongoDB.");
+  })
+  .catch((e) => {
+    console.error("Connection error", e.message);
+  });
+
+const db = mongoose.connection;
+
+module.exports = db;
+```
+
+# Versions <a name = "#versions"></a>
+
+## 🔧 V1 <a name = "#v1"></a>
+
+1. Create one user total (I'll see if can login)
+2. User can create maximum 4 different accosts (Saving / Checking)
+3. Uer can deposit to all of their account (cash,check)
 4. User can transfer money from one account to another account
-5. User cna only withddra from Cheking account.
+5. User cna only withdraw from Checking account.
+6. User can delete their account but they need to transfer the balance before that
+
+Database Structure
+
+## 🔧 V2 <a name = "#v2"></a>
+
+1. One user total (I'll see if can login)
+2. User can create maximum 4 different accosts (Saving / Checking)
+3. Uer can deposit to all of their account (cash,check)
+4. User can transfer money from one account to another account
+5. User cna only withdraw from Checking account.
 6. User can delete their account but they need to transfer the balance before that
 7. There should be a log of transactions for each account (the most challenging part)
 
+## 🚀 Run & Deployment <a name = "deployment"></a>
 
-## Streach goeal
-The added feature of receiving random deposits from some unknown payroll company:
-Imagine waking up one day to find a large deposit in your account from an unknown payroll company(Cayman Payrolls secured by the L-A-W). You don't know who they are or why they sent you money, but you're not complaining. After all, it's free money!
-With the Completely Unsecure Bank, you can expect random deposits from time to time. You never know when or how much money you'll receive, but it's always a nice surprise.
-Of course, there are some risks associated with banking with an unsecure bank. But if you're looking for convenience and accessibility above all else, then the Completely Unsecure Bank is the perfect place for you.
+Add additional notes about how to deploy this on a live system.
 
+## ✍️ Authors <a name = "authors"></a>
 
+[Shirin](https://github.com/shirinmjr) - Idea & Initial work
 
-Sign up for an account at the Completely Unsecure Bank today and start enjoying the benefits of banking the easy way, and the potential to receive random deposits from time to time!
-
-This version of the sales pitch is longer than the previous one, but it still avoids repeating the same information. It also includes more details about the benefits of banking with the Completely Unsecure Bank, such as the potential to receive random deposits.
+## 🎉 Acknowledgements <a name = "acknowledgement"></a>
