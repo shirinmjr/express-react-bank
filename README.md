@@ -101,11 +101,11 @@ module.exports = db;
 ## 🔧 V1 <a name = "#v1"></a>
 
 1. Create one user total (I'll see if can login)
-2. User can create maximum 4 different accosts (Saving / Checking)
-3. Uer can deposit to all of their account (cash,check)
+2. User can create new account by selecting *Create A New Account* button (Saving / Checking)
+3. Uer can deposit/withdraw to/from all of their account (cash,check)
 4. User can transfer money from one account to another account
-5. User cna only withdraw from Checking account.
-6. User can delete their account but they need to transfer the balance before that
+5. User cna only  from Checking account.
+6. User can delete their account but they need to transfer the balance before that. Balance need to be 0 before request to close an account
 
 Database Structure
 
