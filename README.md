@@ -112,7 +112,7 @@ Database Structure
 
 <p align="center">
  <img width=400px src="./readmefiles/designimg/data_structure_img.png" alt="v1-data-structure">
- <img width=400px src="./readmefiles/designimg/v1-basicUI.png" alt="v1-basic-ui">
+ <img  src="./readmefiles/designimg/v1-basicUI.png" alt="v1-basic-ui">
 </p>
 
 ## 🔧 V2 <a name = "#v2"></a>
