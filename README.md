@@ -74,7 +74,7 @@ For your `index.html`
 ```html
     <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
     <script src=".scripts/script.js" type="module" defer></script>
-    <link rel="stylesheet" href="style/style.css" />
+    <link rel="stylesheet" href="style/style.css"/>
 ```
 
 config/db file,
