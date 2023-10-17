@@ -1,8 +1,8 @@
 const db = require('../db');
 db.on('error', console.error.bind(console, 'MongoDB connection error:'));
+const { User, Account, History } = require('../models');
 const Chance = require('chance');
 const chance = new Chance();
-const { User, Account, History } = require('../models');
 const users = require("./data/users.json");
 const accounts = require("./data/accounts.json");
 const histories = require("./data/histories.json");
@@ -10,6 +10,7 @@ const histories = require("./data/histories.json");
 const accountType = ['SVG', 'CHK'];
 const transactionsType = ['deposit', 'withdraw', 'transfer', 'open', 'close'];
 const methods = ['check', 'cash'];
+
 let usersList;
 let accountsList;
 
@@ -27,12 +28,12 @@ const createUsers = async () => {
 
 const createAccounts = async () => {
     await Account.deleteMany();
-    accountsList = accounts.map((account) => {
+    accountsList = [...Array(5)].map(() => {
         return new Account({
-            username: chance.pickone(usersList)._id,
+            accountNumber: chance.integer({ min: 1234567890, max: 9999999999 }),
             type: chance.pickone(accountType),
-            balance: account.balance,
-            status: account.status
+            balance: chance.floating({ min: 100, max: 9999 }),
+            status: true,
         });
     });
     let createAccounts = await Account.insertMany(accountsList);
@@ -41,10 +42,10 @@ const createAccounts = async () => {
 
 const createHistories = async () => {
     await History.deleteMany();
-    const historiesList = histories.map((history) => {
+    const historiesList = [...Array(10)].map(() => {
         return new History({
             date: chance.date(),
-            description: history.description,
+            description: chance.paragraph({ sentences: 1 }),
             transactionType: chance.pickone(transactionsType),
             method: chance.pickone(methods),
             amount: chance.floating({ min: 200, max: 3000 }),

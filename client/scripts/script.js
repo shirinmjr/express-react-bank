@@ -1,3 +1,4 @@
+
 const BASE_URL = "http://localhost:3001";
 const createSVGBtn = document.getElementById("create-svg");
 const createCHKBtn = document.getElementById("create-chk");
@@ -23,7 +24,7 @@ async function getAllAccounts() {
                 `<a class="button account-link" href="./account.html?acc=${account._id}">`
                 + `<button class="account-btn primary-btn">`
                 + `<table class="account-info">`
-                + `<tr class="account-row"><td class="account-data">Account Number:<br/>${account._id}</td></tr>`
+                + `<tr class="account-row"><td class="account-data">Account Number:<br/>${account.accountNumber}</td></tr>`
                 + `<tr class="account-row" id=""account-type"><td> ${type}</td></tr>`
                 + ` <tr class="account-row"><td class="account-data">Status: ${status}</td></tr>`
                 + `<tr class="account-row"><td class="account-data">Balance: ${account.balance}</td></tr>`
@@ -44,10 +45,10 @@ async function getAllAccounts() {
 createSVGBtn.addEventListener('click', async (e) => {
     console.log("creating a new Checking account...");
     let body = {
-        username: "test username",
+        accountNumber: chance.integer({ min: 1234567890, max: 9999999999 }),
         type: "SVG",
         balance: 0,
-        status: true
+        status: true,
     };
     try {
         let newAccount = await axios.post(`${BASE_URL}/accounts`, body);
@@ -62,15 +63,15 @@ createSVGBtn.addEventListener('click', async (e) => {
 createCHKBtn.addEventListener('click', async (e) => {
     console.log("creating a new Checking account...");
     let body = {
-        username: "test username",
+        accountNumber: Math.floor(1000000000 + Math.random() * 999999999),
         type: "CHK",
         balance: 0,
-        status: true
+        status: true,
     };
     try {
         let newAccount = await axios.post(`${BASE_URL}/accounts`, body);
         console.log(newAccount);
-        resetHomePage();
+        loadPage();
     } catch (err) {
         console.log(err);
     }

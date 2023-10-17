@@ -25,7 +25,8 @@ app.get('/accounts/:id', bankController.getOneAccount);//get one account info
 app.post('/accounts', bankController.createBankAccount);//create a new account
 
 
-//app.get("/history", bankController.getAllHistory);//get all histories
+app.get("/history", bankController.getAllHistory);//get all histories
+app.get("/history/:id", bankController.getOneHistory);//get one history
 //app.post('/history', bankController.createHistory);//create a new history
 
 app.listen(PORT, () => console.log(`Express server listening on port ${PORT}`));

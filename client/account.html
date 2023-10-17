@@ -12,7 +12,7 @@
     <h1 id="main-title">Express Bank</h1>
     <div id="account-summary-div"></div>
 
-    <form id="transaction-req">
+    <form id="transaction-form">
       <select id="select-action">
         <option value="">Select An Action</option>
         <option value="d">Deposit</option>
@@ -30,32 +30,14 @@
         <option value="account_id">Savings</option>
         <option value="account_id">Checking</option>
       </select>
-      <button id="transaction-exe" class="primary-btn">Submit</button>
+      <input type="text" placeholder="Amount"/>
+      <button id="submit-action" class="primary-btn">Submit</button>
     </form>
 
-    <div id="transaction-history-table">
-      <table>
-        <tr>
-          <th>Date</th>
-          <th>Transaction Description</th>
-          <th>Type</th>
-          <th>Amount</th>
-        </tr>
-        <tr>
-          <td>02-01-2023</td>
-          <td>Some Deposit to account</td>
-          <td>D</td>
-          <td>100</td>
-        </tr>
-        <tr>
-          <td>03-01-2023</td>
-          <td>Some Withdraw from account</td>
-          <td>W</td>
-          <td>50</td>
-        </tr>
-      </table>
+    <div id="account-history-table">
+      
     </div>
   </body>
   <hr />
-  <footer>This is the footer</footer>
+  <footer></footer>
 </html>

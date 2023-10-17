@@ -5,7 +5,7 @@
     "type": "d",
     "method": "check",
     "amount": 1000,
-    "account": []
+    "accounts": []
   },
   {
     "date": "12-02-2013",
@@ -13,7 +13,7 @@
     "type": "w",
     "method": "check",
     "amount": 200,
-    "account": []
+    "accounts": []
   },
   {
     "date": "12-02-2013",
@@ -21,7 +21,7 @@
     "type": "t",
     "method": "",
     "amount": 300,
-    "account": []
+    "accounts": []
   }
   
 ]

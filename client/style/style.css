@@ -73,13 +73,14 @@ select {
 }
 
 /* Account detail workflow*/
-#select-method {
+/* #select-method {
   display: none;
 }
 
 #select-transfer-account {
   display: none;
 }
-#transaction-exe{
+#submit-action{
     display: none;
-}
+} */
+

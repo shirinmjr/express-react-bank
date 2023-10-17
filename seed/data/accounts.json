@@ -1,30 +1,30 @@
 [
   {
-    "username": "test username",
+    "accountNumber": 0,
     "type": "CHK",
     "balance": 200,
     "status": true
   },
   {
-    "username": "test username",
+    "accountNumber": 0,
     "type": "SVG",
     "balance": 100,
     "status": true
   },
   {
-    "username": "test username",
+    "accountNumber": 0,
     "type": "SVG",
     "balance": 200,
     "status": true
   },
   {
-    "username": "test username",
+    "accountNumber": 0,
     "type": "CHK",
     "balance": 500,
     "status": true
   },
   {
-    "username": "test username",
+    "accountNumber": 0,
     "type": "CHK",
     "balance": 600,
     "status": true
