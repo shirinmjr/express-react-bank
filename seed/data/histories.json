@@ -1,7 +1,7 @@
 [
   {
     "date": "12-02-2013",
-    "description": "deposit with check",
+    "description": "this is a test history 01",
     "type": "d",
     "method": "check",
     "amount": 1000,
@@ -9,7 +9,7 @@
   },
   {
     "date": "12-02-2013",
-    "description": "deposit with check",
+    "description": "this is a test history 02",
     "type": "w",
     "method": "check",
     "amount": 200,
@@ -17,7 +17,7 @@
   },
   {
     "date": "12-02-2013",
-    "description": "deposit with check",
+    "description": "this is a test history 03",
     "type": "t",
     "method": "",
     "amount": 300,

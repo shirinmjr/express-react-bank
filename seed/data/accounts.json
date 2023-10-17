@@ -1,20 +1,32 @@
 [
   {
     "username": "test username",
-    "type": "chk",
+    "type": "CHK",
     "balance": 200,
     "status": true
   },
   {
     "username": "test username",
-    "type": "svg",
+    "type": "SVG",
     "balance": 100,
     "status": true
   },
   {
     "username": "test username",
-    "type": "svg",
+    "type": "SVG",
     "balance": 200,
+    "status": true
+  },
+  {
+    "username": "test username",
+    "type": "CHK",
+    "balance": 500,
+    "status": true
+  },
+  {
+    "username": "test username",
+    "type": "CHK",
+    "balance": 600,
     "status": true
   }
 ]

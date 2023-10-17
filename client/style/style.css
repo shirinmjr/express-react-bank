@@ -1,0 +1,58 @@
+body {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  font-size: 16px;
+}
+#main-title {
+  font-size: xxx-large;
+  text-shadow: 2px 2px 5px #008cba;
+}
+#summary {
+  display: flex;
+  align-items: flex-start;
+}
+.primary-btn {
+  background-color: #008cba;
+  font-size: 12px;
+  border-radius: 0.5em;
+  border: none;
+  color: white;
+  box-shadow: 0 8px 16px 0 rgba(255, 255, 255, 0.707), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  cursor: pointer;
+  -webkit-transition-duration: 0.4s; /* Safari */
+  transition-duration: 0.4s;
+}
+.primary-btn:hover {
+  box-shadow: 0 30px 36px 0 rgba(0, 0, 0, 0.24), 0 17px 50px 0 rgba(0, 0, 0, 0.19);
+}
+.create-btn {
+  font-size: medium;
+  text-shadow: 2px 2px 4px #000000;
+  padding: 14px 40px;
+  margin: auto;
+}
+#accounts-container {
+  display: flex;
+  flex-direction: row;
+
+  flex-wrap: wrap;
+  margin: auto;
+}
+.account-info {
+  display: grid;
+  flex-direction: row;
+  padding: auto;
+  margin: auto;
+}
+
+.account-link {
+  padding: 10px;
+  margin: auto;
+  text-align: left;
+  text-shadow: 1px 1px 2px rgb(40, 41, 41);
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin: 4px 2px;
+}

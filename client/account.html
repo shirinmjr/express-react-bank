@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <script src="./scripts/accountScript.js" type="module" defer></script>
+    <link rel="stylesheet" href="style/style.css" />
+    <title>Express Bank</title>
+  </head>
+  <body>
+    <h1 id="main-title">Express Bank</h1>
+    <div id="summary">
+      <table id="summary-table">
+        <tr id="account-summary-title">
+          <th>Account Summary</th>
+          <th></th>
+        </tr>
+        <tr>
+          <td>Account Number</td>
+          <td>Account Number</td>
+        </tr>
+        <tr>
+          <td>Account Type</td>
+          <td>Account Type</td>
+        </tr>
+        <tr>
+          <td>Account Balance</td>
+          <td>Account Balance</td>
+        </tr>
+        <tr>
+          <td>Account Status</td>
+          <td>Account Status</td>
+        </tr>
+      </table>
+    </div>
+
+    <form id="transaction-req">
+      <select id="select-action">
+        <option value="">Select An Action</option>
+        <option value="d">Deposit</option>
+        <option value="w">Withdraw</option>
+        <option value="t">Transfer</option>
+        <option value="c">Close</option>
+      </select>
+      <select id="select-transaction-tool">
+        <option value="">Method</option>
+        <option value="check">Check</option>
+        <option value="cash">Cash</option>
+      </select>
+      <select id="select-transfer-account">
+        <option value="">Select a Transfer to Account</option>
+        <option value="account_id">Savings</option>
+        <option value="account_id">Checking</option>
+      </select>
+      <button>Submit</button>
+    </form>
+
+    <div id="transaction-history-table">
+      <table>
+        <tr>
+          <th>Date</th>
+          <th>Transaction Description</th>
+          <th>Type</th>
+          <th>Amount</th>
+        </tr>
+        <tr>
+          <td>02-01-2023</td>
+          <td>Some Deposit to account</td>
+          <td>D</td>
+          <td>100</td>
+        </tr>
+        <tr>
+          <td>03-01-2023</td>
+          <td>Some Withdraw from account</td>
+          <td>W</td>
+          <td>50</td>
+        </tr>
+      </table>
+    </div>
+  </body>
+  <hr />
+  <footer>This is the footer</footer>
+</html>
