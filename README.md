@@ -56,9 +56,6 @@ This is a experimental project to create a full CRUD app. To do so, we're experi
 
 make sure you have live Server extension install
 
-
-Random deposits: Receiving a random payrolls deposit.
-
 # Setups:
 
 ```sh
@@ -123,13 +120,7 @@ Previews:
 
 ## 🔧 V2 <a name = "#v2"></a>
 
-1. One user total (I'll see if can login)
-2. User can create maximum 4 different accosts (Saving / Checking)
-3. Uer can deposit to all of their account (cash,check)
-4. User can transfer money from one account to another account
-5. User cna only withdraw from Checking account.
-6. User can delete their account but they need to transfer the balance before that
-7. There should be a log of transactions for each account (the most challenging part)
+1. Random deposits: Receiving a random payrolls deposit.
 
 ## 🚀 Run & Deployment <a name = "deployment"></a>
 
