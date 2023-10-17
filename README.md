@@ -46,9 +46,16 @@ This is a experimental project to create a full CRUD app. To do so, we're experi
 ## ⛏️ Built Using <a name = "built_using"></a>
 
 - [MongoDB](https://www.mongodb.com/) - Database
+  - mongoose - Database Framework
+  - nodemon
 - [Express](https://expressjs.com/) - Server Framework
-- [VueJs](https://vuejs.org/) - Web Framework
 - [NodeJs](https://nodejs.org/en/) - Server Environment
+- [CORS](https://www.npmjs.com/package/cors) - Connect/Express middleware
+- [Morgan](https://www.npmjs.com/package/morgan) - HTTP request logger middleware for node.js
+- [Live Server](https://marketplace.visualstudio.com/items?itemName=ritwickdey.LiveServer) - A Quick Development Live Server with live browser reload.
+
+make sure you have live Server extension install
+
 
 Random deposits: Receiving a random payrolls deposit.
 
