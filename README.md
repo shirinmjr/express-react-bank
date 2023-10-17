@@ -36,6 +36,7 @@
 This is a experimental project to create a full CRUD app. To do so, we're experimenting with a banking system in which user can:
 
 - Create accounts(Saving and Checking) - Create
+- Create Log Record Per Transaction - Create
 - Display Account Details & Transactions History - Read
 - Deposit Funds - Update
 - Withdraw Funds - Update
