@@ -1,18 +1,14 @@
 const BASE_URL = "http://localhost:3001";
-console.log("Welcome to Express Bank");
 const createSVGBtn = document.getElementById("create-svg");
 const createCHKBtn = document.getElementById("create-chk");
 const accountsContainer = document.getElementById("accounts-container");
 let accountsBtn;
 
-function resetHomePage() {
-    console.log("Loading...");
+function loadPage() {
+    console.log("Welcome to Express Bank");
     getAllAccounts();
-
 }
-resetHomePage();
-
-
+loadPage();
 
 async function getAllAccounts() {
     let accountsDisplayStr = "";
@@ -24,7 +20,7 @@ async function getAllAccounts() {
             let status = account.status ? "Open" : "Closed";
             let type = account.type === "SVG" ? "Savings Account" : "Checking Account";
             accountsDisplayStr +=
-                `<a class="account-link" href="./account.html/aac=${account._id}">`
+                `<a class="button account-link" href="./account.html?acc=${account._id}">`
                 + `<button class="account-btn primary-btn">`
                 + `<table class="account-info">`
                 + `<tr class="account-row"><td class="account-data">Account Number:<br/>${account._id}</td></tr>`
@@ -45,9 +41,7 @@ async function getAllAccounts() {
     }
 }
 
-
 createSVGBtn.addEventListener('click', async (e) => {
-
     console.log("creating a new Checking account...");
     let body = {
         username: "test username",
@@ -58,7 +52,7 @@ createSVGBtn.addEventListener('click', async (e) => {
     try {
         let newAccount = await axios.post(`${BASE_URL}/accounts`, body);
         console.log(newAccount);
-        resetHomePage();
+        loadPage();
     } catch (err) {
         console.log(err);
     }
@@ -66,7 +60,6 @@ createSVGBtn.addEventListener('click', async (e) => {
 });
 
 createCHKBtn.addEventListener('click', async (e) => {
-
     console.log("creating a new Checking account...");
     let body = {
         username: "test username",

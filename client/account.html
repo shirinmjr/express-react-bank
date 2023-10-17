@@ -10,30 +10,7 @@
   </head>
   <body>
     <h1 id="main-title">Express Bank</h1>
-    <div id="summary">
-      <table id="summary-table">
-        <tr id="account-summary-title">
-          <th>Account Summary</th>
-          <th></th>
-        </tr>
-        <tr>
-          <td>Account Number</td>
-          <td>Account Number</td>
-        </tr>
-        <tr>
-          <td>Account Type</td>
-          <td>Account Type</td>
-        </tr>
-        <tr>
-          <td>Account Balance</td>
-          <td>Account Balance</td>
-        </tr>
-        <tr>
-          <td>Account Status</td>
-          <td>Account Status</td>
-        </tr>
-      </table>
-    </div>
+    <div id="account-summary-div"></div>
 
     <form id="transaction-req">
       <select id="select-action">
@@ -43,7 +20,7 @@
         <option value="t">Transfer</option>
         <option value="c">Close</option>
       </select>
-      <select id="select-transaction-tool">
+      <select id="select-method">
         <option value="">Method</option>
         <option value="check">Check</option>
         <option value="cash">Cash</option>
@@ -53,7 +30,7 @@
         <option value="account_id">Savings</option>
         <option value="account_id">Checking</option>
       </select>
-      <button>Submit</button>
+      <button id="transaction-exe" class="primary-btn">Submit</button>
     </form>
 
     <div id="transaction-history-table">

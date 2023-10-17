@@ -13,21 +13,27 @@ body {
   align-items: flex-start;
 }
 .primary-btn {
-  background-color: #008cba;
+
+  background-color: #4898c9;
   font-size: 12px;
-  border-radius: 0.5em;
+  border-radius: 5px;
   border: none;
   color: white;
+  font-weight: bold;
+    line-height: 25px;
+    padding: 10px;
   box-shadow: 0 8px 16px 0 rgba(255, 255, 255, 0.707), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
   cursor: pointer;
   -webkit-transition-duration: 0.4s; /* Safari */
   transition-duration: 0.4s;
 }
+
 .primary-btn:hover {
   box-shadow: 0 30px 36px 0 rgba(0, 0, 0, 0.24), 0 17px 50px 0 rgba(0, 0, 0, 0.19);
 }
 .create-btn {
   font-size: medium;
+  background-color: #4E9CAF;
   text-shadow: 2px 2px 4px #000000;
   padding: 14px 40px;
   margin: auto;
@@ -55,4 +61,25 @@ body {
   display: inline-block;
   font-size: 16px;
   margin: 4px 2px;
+}
+
+select {
+  background-color: #4898c9;
+  color: white;
+  font-size: 24px;
+  border-radius: 5px;
+  padding: 10px;
+  text-shadow: 2px 2px 5px #008cba;
+}
+
+/* Account detail workflow*/
+#select-method {
+  display: none;
+}
+
+#select-transfer-account {
+  display: none;
+}
+#transaction-exe{
+    display: none;
 }
