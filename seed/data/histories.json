@@ -1,0 +1,27 @@
+[
+  {
+    "date": "12-02-2013",
+    "description": "deposit with check",
+    "type": "d",
+    "method": "check",
+    "amount": 1000,
+    "account": []
+  },
+  {
+    "date": "12-02-2013",
+    "description": "deposit with check",
+    "type": "w",
+    "method": "check",
+    "amount": 200,
+    "account": []
+  },
+  {
+    "date": "12-02-2013",
+    "description": "deposit with check",
+    "type": "t",
+    "method": "",
+    "amount": 300,
+    "account": []
+  }
+  
+]

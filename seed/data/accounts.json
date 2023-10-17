@@ -1,0 +1,20 @@
+[
+  {
+    "username": "test username",
+    "type": "chk",
+    "balance": 200,
+    "status": true
+  },
+  {
+    "username": "test username",
+    "type": "svg",
+    "balance": 100,
+    "status": true
+  },
+  {
+    "username": "test username",
+    "type": "svg",
+    "balance": 200,
+    "status": true
+  }
+]
