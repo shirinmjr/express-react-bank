@@ -61,7 +61,7 @@ make sure you have live Server extension install
 
 ```sh
 npm init -y
-npm i cors express mongoose morgan
+npm i cors express mongoose morgan chance
 touch server.js //server route
 touch .ignore //add node_modules
 ```
