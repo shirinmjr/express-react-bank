@@ -41,7 +41,6 @@ This is a experimental project to create a full CRUD app. To do so, we're experi
 - Deposit Funds - Update
 - Withdraw Funds - Update
 - Close an account - Delete
-- Keep and display the logs of activities - Create
 
 ### Stretch Goals - it's always a nice surprise!
 
