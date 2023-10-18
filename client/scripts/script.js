@@ -21,7 +21,7 @@ async function getAllAccounts() {
             let status = account.status ? "Open" : "Closed";
             let type = account.type === "SVG" ? "Savings Account" : "Checking Account";
             accountsDisplayStr +=
-                `<a class="button account-link" href="./account.html?acc=${account._id}">`
+                `<a class="button account-link" href="/client/account.html?acc=${account._id}">`
                 + `<button class="account-btn primary-btn">`
                 + `<table class="account-info">`
                 + `<tr class="account-row"><td class="account-data">Account Number:<br/>${account.accountNumber}</td></tr>`
@@ -63,7 +63,7 @@ createSVGBtn.addEventListener('click', async (e) => {
 createCHKBtn.addEventListener('click', async (e) => {
     console.log("creating a new Checking account...");
     let body = {
-        accountNumber: Math.floor(1000000000 + Math.random() * 999999999),
+        accountNumber: Math.floor(100000 + Math.random() * 900000),
         type: "CHK",
         balance: 0,
         status: true,
@@ -71,7 +71,7 @@ createCHKBtn.addEventListener('click', async (e) => {
     try {
         let newAccount = await axios.post(`${BASE_URL}/accounts`, body);
         console.log(newAccount);
-        loadPage();
+        resetHomePage();
     } catch (err) {
         console.log(err);
     }

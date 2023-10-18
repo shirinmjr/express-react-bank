@@ -3,6 +3,7 @@ module.exports = {
     getAllAccounts,
     getOneAccount,
     createBankAccount,
+    updateOneAccount,
     getAllHistory,
     getOneHistory
 
@@ -47,33 +48,51 @@ async function createBankAccount(req, res) {
     }
 }
 
-//GET-History
-
-
-
-async function getAllHistory(req, res) {
-    console.log("Getting all History...");
+//PUT-Account
+async function updateOneAccount(req, res) {
+    console.log("Update balance...");
     try {
-        const histories = await Account.find();
-        return res.json(histories);
-
-    } catch (error) {
-        console.log(error);
-        return res.status(500).send(error.message);
-    }
-}
-
-async function getOneHistory(req, res) {
-    console.log("Getting Account History Info...");
-    try {
+        //account.balance
+        //balance =2000
         const id = req.params.id;
-        const history = await History.findById(id);
-        if (history) {
-            return res.json(history);
+        const account = await Account.findByIdAndUpdate(id, {balance:2000});
+        if (account) {
+            return res.json(account);
         }
-        return res.status(404).send('History for an account with the specified ID does not exist.');
+        return res.status(404).send('Account with the specified ID does not exist.');
     } catch (error) {
         return res.status(500).send(error.message);
     }
 }
+
+
+    //GET-History
+
+
+
+    async function getAllHistory(req, res) {
+        console.log("Getting all History...");
+        try {
+            const histories = await Account.find();
+            return res.json(histories);
+
+        } catch (error) {
+            console.log(error);
+            return res.status(500).send(error.message);
+        }
+    }
+
+    async function getOneHistory(req, res) {
+        console.log("Getting Account History Info...");
+        try {
+            const id = req.params.id;
+            const history = await History.findById(id);
+            if (history) {
+                return res.json(history);
+            }
+            return res.status(404).send('History for an account with the specified ID does not exist.');
+        } catch (error) {
+            return res.status(500).send(error.message);
+        }
+    }
 
