@@ -32,7 +32,6 @@ async function getAllAccounts() {
         });
         accountsContainer.innerHTML = accountsDisplayStr;
         document.querySelectorAll(".account-link").forEach(account => {
-            console.log(account);
             account.addEventListener("click", (e) => {
                 console.log("Redirect to account page...");
             });
@@ -45,7 +44,7 @@ async function getAllAccounts() {
 createSVGBtn.addEventListener('click', async (e) => {
     console.log("creating a new Checking account...");
     let body = {
-        accountNumber: chance.integer({ min: 1234567890, max: 9999999999 }),
+        accountNumber: Math.floor(100000 + Math.random() * 900000),
         type: "SVG",
         balance: 0,
         status: true,
@@ -71,7 +70,7 @@ createCHKBtn.addEventListener('click', async (e) => {
     try {
         let newAccount = await axios.post(`${BASE_URL}/accounts`, body);
         console.log(newAccount);
-        resetHomePage();
+        loadPage();
     } catch (err) {
         console.log(err);
     }

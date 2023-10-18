@@ -114,9 +114,11 @@ module.exports = db;
 6. User can delete their account but they need to transfer the balance before that. Balance need to be 0 before request to close an account
 
 Previews:
+
 <p align="center">
  <img width=200px src="./readmefiles/designimg/data_structure_img.png" alt="v1-data-structure">
  <img width=500px src="./readmefiles/designimg/v1-basicUI.png" alt="v1-basic-ui">
+  <img width=500px src="./readmefiles/designimg/homepage.png" alt="homepage">
 </p>
 
 ## 🔧 V2 <a name = "#v2"></a>

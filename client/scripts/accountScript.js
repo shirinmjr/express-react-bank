@@ -9,22 +9,15 @@ const submitActionBtn = document.getElementById('submit-action');
 let accountId;
 
 
-
-
-
 function loadPage() {
   console.log("Account Details Page");
   const queryString = window.location.search;
   const urlParams = new URLSearchParams(queryString);
   accountId = urlParams.get('acc');
   getAccountInfo(accountId);
-  //  getHistoryInfo(accountId);
-  // selectMethod.style.visibility = "hidden";
-  // selectTransferAccount.style.visibility = "hidden";
-  // submitActionBtn.style.visibility = "hidden";
-
 }
 loadPage();
+
 
 async function getAccountInfo(accountId) {
   console.log("getting summary for account: ", accountId);
@@ -43,6 +36,18 @@ async function getAccountInfo(accountId) {
 
   accountSummaryDiv.innerHTML = accountSummaryStr;
 }
+
+submitActionBtn.addEventListener('click', async (e) => {
+  e.preventDefault();
+  const formData = new FormData(createActorForm[0]);
+    let actorData = {};
+    for (let [key, value] of formData.entries()) {
+        console.log(key, value);
+        actorData[key] = value;
+    }
+  console.log("Deposit for ", accountId);
+  await axios.put(`${BASE_URL}/accounts/${accountId}`);
+});
 
 async function getHistoryInfo(accountId) {
   console.log("getting History for account: ", accountId);
@@ -79,12 +84,7 @@ async function getHistoryInfo(accountId) {
 
 
 
-submitActionBtn.addEventListener('click', async (e) => {
-  e.preventDefault();
-  console.log(accountId);
-  await axios.put(`${BASE_URL}/accounts/${accountId}`);
 
-});
 
 
 
