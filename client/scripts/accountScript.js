@@ -30,7 +30,7 @@ async function getAccountInfo(accountId) {
         <tr id="account-summary-title"><th>Account Summary</th><th></th></tr>
         <tr><td>Account Number</td><td>${accountInfo.data.accountNumber}</td></tr>
         <tr><td>Account Type</td><td>${type}</td></tr>
-        <tr><td>Account Balance</td><td>${accountInfo.data.balance}</td></tr>
+        <tr><td>Account Balance</td><td>$${accountInfo.data.balance}</td></tr>
         <tr><td>Account Status</td><td>${status}</td></tr>
       </table>`;
 

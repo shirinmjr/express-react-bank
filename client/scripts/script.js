@@ -27,7 +27,7 @@ async function getAllAccounts() {
                 + `<tr class="account-row"><td class="account-data">Account Number:<br/>${account.accountNumber}</td></tr>`
                 + `<tr class="account-row" id=""account-type"><td> ${type}</td></tr>`
                 + ` <tr class="account-row"><td class="account-data">Status: ${status}</td></tr>`
-                + `<tr class="account-row"><td class="account-data">Balance: ${account.balance}</td></tr>`
+                + `<tr class="account-row"><td class="account-data">Balance: $${account.balance}</td></tr>`
                 + `</table></button></a>`;
         });
         accountsContainer.innerHTML = accountsDisplayStr;
