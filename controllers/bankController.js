@@ -5,7 +5,8 @@ module.exports = {
     createBankAccount,
     updateOneAccount,
     getAllHistory,
-    getOneHistory
+    getOneHistory,
+    deleteOneAccount
 
 
 };
@@ -50,12 +51,27 @@ async function createBankAccount(req, res) {
 
 //PUT-Account
 async function updateOneAccount(req, res) {
-    console.log("Update balance...");
     try {
-        //account.balance
-        //balance =2000
         const id = req.params.id;
-        const account = await Account.findByIdAndUpdate(id, {balance:2000});
+        const filter = { _id: id };
+        const update = { balance: req.body.amount };
+
+        const account = await Account.findOneAndUpdate(filter, update);
+        if (account) {
+            return res.json(account);
+        }
+        return res.status(404).send('Account with the specified ID does not exist.');
+    } catch (error) {
+        return res.status(500).send(error.message);
+    }
+}
+
+//DELETE - Account
+async function deleteOneAccount(req, res) {
+    console.log("Delete One Account...");
+    try {
+        const id = req.params.id;
+        const account = await Account.findByIdAndDelete(id);
         if (account) {
             return res.json(account);
         }
@@ -66,33 +82,31 @@ async function updateOneAccount(req, res) {
 }
 
 
-    //GET-History
+//GET-History
 
+async function getAllHistory(req, res) {
+    console.log("Getting all History...");
+    try {
+        const histories = await Account.find();
+        return res.json(histories);
 
-
-    async function getAllHistory(req, res) {
-        console.log("Getting all History...");
-        try {
-            const histories = await Account.find();
-            return res.json(histories);
-
-        } catch (error) {
-            console.log(error);
-            return res.status(500).send(error.message);
-        }
+    } catch (error) {
+        console.log(error);
+        return res.status(500).send(error.message);
     }
+}
 
-    async function getOneHistory(req, res) {
-        console.log("Getting Account History Info...");
-        try {
-            const id = req.params.id;
-            const history = await History.findById(id);
-            if (history) {
-                return res.json(history);
-            }
-            return res.status(404).send('History for an account with the specified ID does not exist.');
-        } catch (error) {
-            return res.status(500).send(error.message);
+async function getOneHistory(req, res) {
+    console.log("Getting Account History Info...");
+    try {
+        const id = req.params.id;
+        const history = await History.findById(id);
+        if (history) {
+            return res.json(history);
         }
+        return res.status(404).send('History for an account with the specified ID does not exist.');
+    } catch (error) {
+        return res.status(500).send(error.message);
     }
+}
 

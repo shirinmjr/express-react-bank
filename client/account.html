@@ -12,29 +12,29 @@
     <h1 id="main-title">Express Bank</h1>
     <div id="account-summary-div"></div>
 
-    <form id="transaction-form">
-      <input id="transaction-amount"type="number" placeholder="$Amount" />
+    <form method="post" id="transaction-form">
+      <input required="true" name="amount" id="transaction-amount"type="number" value=""  />
 
-      <select id="select-action">
+      <select required="true" name="action" id="select-action">
         <option value="">Select An Action</option>
         <option value="d">Deposit</option>
         <option value="w">Withdraw</option>
         <option value="t">Transfer</option>
         <option value="c">Close</option>
       </select>
-      <select id="select-method">
+      <select name="method" id="select-method">
         <option value="">Method</option>
         <option value="check">Check</option>
         <option value="cash">Cash</option>
       </select>
-      <select id="select-transfer-account">
+      <select name="transfer" id="select-transfer-account">
         <option value="">Select a Transfer to Account</option>
         <option value="account_id">Savings</option>
         <option value="account_id">Checking</option>
       </select>
-
       <button id="submit-action" class="primary-btn">Submit</button>
     </form>
+    <div id="message-box"></div>
 
     <div id="account-history-table"></div>
   </body>

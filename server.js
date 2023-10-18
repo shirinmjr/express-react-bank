@@ -22,9 +22,10 @@ app.get("/", (req, res) => res.send({ msg: "This is root!" }));
 
 app.get("/accounts", bankController.getAllAccounts);//get all accounts
 app.get('/accounts/:id', bankController.getOneAccount);//get one account info
-app.put('/accounts/:id', bankController.updateOneAccount);//update balance deposit/withdraw
-app.post('/accounts', bankController.createBankAccount);//create a new account
+app.post('/accounts/', bankController.createBankAccount);//create a new account
 
+app.put('/accounts/:id', bankController.updateOneAccount);//update balance deposit/withdraw
+app.delete('/accounts/:id', bankController.deleteOneAccount);//delete one account
 
 app.get("/history", bankController.getAllHistory);//get all histories
 app.get("/history/:id", bankController.getOneHistory);//get one history
