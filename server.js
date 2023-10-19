@@ -27,8 +27,8 @@ app.post('/accounts/', bankController.createBankAccount);//create a new account
 app.put('/accounts/:id', bankController.updateOneAccount);//update balance deposit/withdraw
 app.delete('/accounts/:id', bankController.deleteOneAccount);//delete one account
 
-app.get("/history", bankController.getAllHistory);//get all histories
-app.get("/history/:id", bankController.getOneHistory);//get one history
+app.get("/histories", bankController.getAllHistory);//get all histories
+app.get("/histories/:id", bankController.getOneHistory);//get one history
 //app.post('/history', bankController.createHistory);//create a new history
 
 app.listen(PORT, () => console.log(`Express server listening on port ${PORT}`));

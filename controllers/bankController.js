@@ -87,7 +87,7 @@ async function deleteOneAccount(req, res) {
 async function getAllHistory(req, res) {
     console.log("Getting all History...");
     try {
-        const histories = await Account.find();
+        const histories = await History.find();
         return res.json(histories);
 
     } catch (error) {

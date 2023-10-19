@@ -32,7 +32,7 @@ const createAccounts = async () => {
         return new Account({
             accountNumber: chance.integer({ min: 1234567890, max: 9999999999 }),
             type: chance.pickone(accountType),
-            balance: chance.floating({ min: 100, max: 9999 }),
+            balance: chance.floating({ min: 100, max: 9999, fixed: 2}),
             status: true,
         });
     });

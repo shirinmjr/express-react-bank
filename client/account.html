@@ -5,15 +5,17 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
     <script src="./scripts/accountScript.js" type="module" defer></script>
+    <link rel="icon" type="image/x-icon" href="/client/assets/img/bank.png" />
     <link rel="stylesheet" href="style/style.css" />
     <title>Express Bank</title>
   </head>
   <body>
+    <img width=400px src="/client/assets/img/bank.png">
     <h1 id="main-title">Express Bank</h1>
     <div id="account-summary-div"></div>
 
     <form method="post" id="transaction-form">
-      <input required="true" name="amount" id="transaction-amount"type="number" value=""  />
+      <input required="true" name="amount" id="transaction-amount" type="number" value="" />
 
       <select required="true" name="action" id="select-action">
         <option value="">Select An Action</option>
@@ -29,13 +31,12 @@
       </select>
       <select name="transfer" id="select-transfer-account">
         <option value="">Select a Transfer to Account</option>
-        <option value="account_id">Savings</option>
-        <option value="account_id">Checking</option>
       </select>
       <button id="submit-action" class="primary-btn">Submit</button>
     </form>
     <div id="message-box"></div>
 
+    
     <div id="account-history-table"></div>
   </body>
   <hr />
