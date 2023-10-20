@@ -117,7 +117,7 @@ submitActionBtn.addEventListener('click', async (e) => {
   }
 
   if (formVerify(transaction)) {// Form Verification
-    console.log("transaction data===>", transaction);
+
     switch (transaction.action) {//form action router
       case 'd':// Deposit
         console.log('Depositing...');
