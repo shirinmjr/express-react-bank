@@ -106,12 +106,13 @@ module.exports = db;
 
 ## 🔧 V1 <a name = "#v1"></a>
 
-1. Create one user total (I'll see if can login)
+1. Create one user total
 2. User can create new account by selecting _Create A New Account_ button (Saving / Checking)
-3. Uer can deposit/withdraw to/from all of their account (cash,check)
-4. User can transfer money from one account to another account
-5. User cna only from Checking account.
-6. User can delete their account but they need to transfer the balance before that. Balance need to be 0 before request to close an account
+3. User can see the account number, blanace and the status of the accout(Is account open?)
+4. Select and account takes user to the account details page
+5. Uer can deposit/withdraw to/from all of their account (cash,check)
+6. . User can delete their account but they need to transfer the balance before that. Balance need to be 0 before request to close an account
+7. User can see a history of transactions in their account page
 
 Previews:
 
@@ -123,7 +124,12 @@ Previews:
 
 ## 🔧 V2 <a name = "#v2"></a>
 
-1. Random deposits: Receiving a random payrolls deposit.
+1. Account history gets updated as transactions happened
+2. User can login (Google Auth)
+3. User can transfer money from one account to another account
+4. Random deposits: Receiving a random payrolls deposit.
+5. There is no bussiess logic handled in the front-end
+
 
 ## 🚀 Run & Deployment <a name = "deployment"></a>
 
