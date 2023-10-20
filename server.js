@@ -28,7 +28,7 @@ app.put('/accounts/:id', bankController.updateOneAccount);//update balance depos
 app.delete('/accounts/:id', bankController.deleteOneAccount);//delete one account
 
 app.get("/histories", bankController.getAllHistory);//get all histories
-app.get("/histories/:id", bankController.getOneHistory);//get one history
+app.get("/histories/:id", bankController.getOneHistoryByAccountId);//get one history
 //app.post('/history', bankController.createHistory);//create a new history
 
 app.listen(PORT, () => console.log(`Express server listening on port ${PORT}`));

@@ -1,6 +1,6 @@
 const BASE_URL = "http://localhost:3001";
 const accountSummaryDiv = document.getElementById('account-summary-div');
-const accountHistoryDiv = document.getElementById('account-history-table');
+const accountHistoryTable = document.getElementById('account-history-table');
 const transactionAmountText = document.getElementById('transaction-amount');
 const selectAction = document.getElementById('select-action');
 const selectMethod = document.getElementById('select-method');
@@ -191,28 +191,18 @@ async function getHistoryInfo(accountId) {
   console.log(accountHistoryInfo);
   let accountHistoryStr = "";
 
-  accountHistoryStr += `<table>
-    <tr>
-      <th>Date</th>
-      <th>Transaction Description</th>
-      <th>Type</th>
-      <th>Amount</th>
-    </tr>
-    <tr>
-      <td>02-01-2023</td>
-      <td>Some Deposit to account</td>
-      <td>D</td>
-      <td>100</td>
-    </tr>
-    <tr>
-      <td>03-01-2023</td>
-      <td>Some Withdraw from account</td>
-      <td>W</td>
-      <td>50</td>
-    </tr>
-  </table>`;
+  accountHistoryInfo.data.forEach(history => {
 
-  accountHistoryDiv.innerHTML = accountHistoryStr;
+    accountHistoryStr += `<tr>
+    <th>${history.createdAt}</th>
+    <th>${history.description}</th>
+    <th>${history.transactionType}</th>
+    <th>${history.method}</th>
+    <th>$${history.amount}</th>
+  </tr>`;
+  });
+
+  accountHistoryTable.innerHTML = accountHistoryStr;
 
 }
 
@@ -228,4 +218,4 @@ async function getHistoryInfo(accountId) {
 
 
 
-
+;

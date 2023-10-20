@@ -5,7 +5,7 @@ module.exports = {
     createBankAccount,
     updateOneAccount,
     getAllHistory,
-    getOneHistory,
+    getOneHistoryByAccountId,
     deleteOneAccount
 
 
@@ -96,11 +96,11 @@ async function getAllHistory(req, res) {
     }
 }
 
-async function getOneHistory(req, res) {
+async function getOneHistoryByAccountId(req, res) {
     console.log("Getting Account History Info...");
     try {
         const id = req.params.id;
-        const history = await History.findById(id);
+        const history = await History.find({ "account": id });
         if (history) {
             return res.json(history);
         }

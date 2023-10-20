@@ -1,27 +1,50 @@
 [
   {
-    "date": "12-02-2013",
+    "account": "",
     "description": "this is a test history 01",
-    "type": "d",
+    "transactionType": "d",
     "method": "check",
     "amount": 1000,
-    "accounts": []
+    "accounts": ["65315971d3f86ade735912d0"]
   },
   {
-    "date": "12-02-2013",
+    "account": "",
     "description": "this is a test history 02",
-    "type": "w",
+    "transactionType": "w",
     "method": "check",
     "amount": 200,
-    "accounts": []
+    "accounts": ["65315971d3f86ade735912d1"]
   },
   {
-    "date": "12-02-2013",
+    "account": "",
     "description": "this is a test history 03",
-    "type": "t",
+    "transactionType": "t",
     "method": "",
     "amount": 300,
-    "accounts": []
+    "accounts": ["65315971d3f86ade735912cf", "65315971d3f86ade735912d0"]
+  },
+  {
+    "account": "",
+    "description": "this is a test history 02",
+    "transactionType": "w",
+    "method": "check",
+    "amount": 200,
+    "accounts": ["65315971d3f86ade735912d2"]
+  },
+  {
+    "account": "",
+    "description": "this is a test history 02",
+    "transactionType": "w",
+    "method": "check",
+    "amount": 200,
+    "accounts": ["65315971d3f86ade735912d2"]
+  },
+  {
+    "account": "",
+    "description": "this is a test history 02",
+    "transactionType": "w",
+    "method": "check",
+    "amount": 200,
+    "accounts": ["65315971d3f86ade735912d3"]
   }
-  
 ]
