@@ -1,52 +1,29 @@
 const BASE_URL = "http://localhost:3001";
-const accountSummaryDiv = document.getElementById('account-summary-div');
-const accountHistoryTable = document.getElementById('account-history-table');
-const transactionAmountText = document.getElementById('transaction-amount');
-const selectAction = document.getElementById('select-action');
-const selectMethod = document.getElementById('select-method');
-const selectTransferAccount = document.getElementById('select-transfer-account');
-const submitActionBtn = document.getElementById('submit-action');
-const transactionForm = document.getElementById('transaction-form');
-const transactionMessageBox = document.getElementById('message-box');
+
+import { dom } from '../pom/account.page.js';
+const accountSummaryDiv = dom('accountSummaryDiv');
+const accountHistoryTable = dom('accountHistoryTable');
+const transactionAmountText = dom('transactionAmountText');
+const selectAction = dom('selectAction');
+const selectMethod = dom('selectMethod');
+const selectTransferAccount = dom('selectTransferAccount');
+const submitActionBtn = dom('submitActionBtn');
+const transactionForm = dom('transactionForm');
+const transactionMessageBox = dom('transactionMessageBox');
 
 //Global params need for all transactions
-let accountId;
+export let accountId;
 let balance;
 
 
 function loadPage() {
-  getAccountIdNumber();
   setDefaultUI();
-  getAccountInfo(accountId);
-  getHistoryInfo(accountId);
+  getAccountIdNumber();
+  showAccountInfo(accountId);
+  showHistoryInfo(accountId);
+  getTransferToAccounts();
 }
 loadPage();
-
-//Account Page Setup
-function getAccountIdNumber() {
-  const queryString = window.location.search;
-  const urlParams = new URLSearchParams(queryString);
-  accountId = urlParams.get('acc');
-}
-
-async function getAccountInfo(accountId) {
-  console.log("getting summary for account: ", accountId);
-  let accountInfo = await axios.get(`${BASE_URL}/accounts/${accountId}`);
-  console.log(accountInfo.data);
-  balance = accountInfo.data.balance;
-  console.log(balance);
-  const type = accountInfo.data.type == 'SVG' ? 'Savings Account' : 'Checking Account';
-  const status = accountInfo.data.status == true ? 'Open' : 'Closed';
-  let accountSummaryStr = `
-    <table id="summary-table">
-        <tr id="account-summary-title"><th>Account Summary</th><th></th></tr>
-        <tr><td>Account Number</td><td>${accountInfo.data.accountNumber}</td></tr>
-        <tr><td>Account Type</td><td>${type}</td></tr>
-        <tr><td>Account Balance</td><td>$${accountInfo.data.balance}</td></tr>
-        <tr><td>Account Status</td><td>${status}</td></tr>
-      </table>`;
-  accountSummaryDiv.innerHTML = accountSummaryStr;
-}
 
 function setDefaultUI() {
   submitActionBtn.style.visibility = "visible";
@@ -58,141 +35,38 @@ function setDefaultUI() {
   selectMethod.selectedIndex = 0;
   selectTransferAccount.selectedIndex = 0;
 }
-//Action Drop-down Options
-selectAction.addEventListener('change', () => {
-  switch (selectAction.value) {
-    case 'd':
-      console.log("Deposit");
-      selectMethod.style.visibility = "visible";
-      selectTransferAccount.style.visibility = "hidden";
 
-      break;
-    case 'w':
-      console.log("Withdraw");
-      selectMethod.style.visibility = "visible";
-      selectTransferAccount.style.visibility = "hidden";
-      break;
-    case 't':
-      console.log("Transfer");
-      getTransferToAccounts();
-      selectMethod.style.visibility = "hidden";
-      selectTransferAccount.style.visibility = "visible";
-
-      break;
-    case 'c':
-      console.log("Close Account");
-      break;
-    case '':
-      selectMethod.style.visibility = "hidden";
-      submitActionBtn.style.visibility = "hidden";
-      break;
-  }
-});
-
-async function getTransferToAccounts() {
-  let transferAccountStr = `<option value="">Select a Transfer to Account</option>`;
-  let allAccountsInfo = await axios.get(`${BASE_URL}/accounts`);
-  console.log(allAccountsInfo.data);
-  let transferToAccounts = allAccountsInfo.data.filter(account => account._id != accountId);
-  console.log(transferToAccounts);
-  transferToAccounts.forEach(account => {
-    transferAccountStr += `<option balance=${account.balance} value="${account._id}">${account.accountNumber}</option>`;
-  });
-
-  selectTransferAccount.innerHTML = transferAccountStr;
+function getAccountIdNumber() {
+  const queryString = window.location.search;
+  const urlParams = new URLSearchParams(queryString);
+  accountId = urlParams.get('acc');
 }
 
+async function showAccountInfo(accountId) {
+  console.log("getting summary for account: ", accountId);
+  let accountInfo = await axios.get(`${BASE_URL}/accounts/${accountId}`);
+  console.log("account info:", accountInfo.data, "Account Current Balance", accountInfo.data.balance);
+  const type = accountInfo.data.type == 'SVG' ? 'Savings Account' : 'Checking Account';
+  const status = accountInfo.data.status == true ? 'Open' : 'Closed';
+  let accountSummaryStr =
+    `<table id="summary-table">
+        <tr id="account-summary-title"><th>Account Summary</th><th></th></tr>
+        <tr><td>Account Number</td><td>${accountInfo.data.accountNumber}</td></tr>
+        <tr><td>Account Type</td><td>${type}</td></tr>
+        <tr><td>Account Balance</td><td>$${accountInfo.data.balance}</td></tr>
+        <tr><td>Account Status</td><td>${status}</td></tr>
+      </table>`;
 
-//======> Update Account - Deposit /// Withdraw /// Transfer
-
-submitActionBtn.addEventListener('click', async (e) => {
-  e.preventDefault();
-  let transaction = {};//Data send for back-end
-  transactionMessageBox.innerText = "";//Rest error message dialog
-
-  const formData = new FormData(transactionForm);
-  for (let [key, value] of formData.entries()) {
-    console.log(key, value);
-    transaction[key] = value;
-  }
-
-  if (formVerify(transaction)) {// Form Verification
-
-    switch (transaction.action) {//form action router
-      case 'd':// Deposit
-        console.log('Depositing...');
-        transaction.amount = balance + Number(transaction.amount);
-        await axios.put(`${BASE_URL}/accounts/${accountId}`, transaction);
-        break;
-      case 'w':// Withdraw
-        console.log('Withdrawing...');
-        if (transaction.amount <= balance) {
-          transaction.amount = balance - transaction.amount;
-          await axios.put(`${BASE_URL}/accounts/${accountId}`, transaction);
-        } else {
-          transactionMessageBox.innerText = "Balance Not Sufficient";
-        }
-        break;
-      case 't'://transfer
-        console.log('Transferring...');
-        console.log("transfer from account", accountId);
-        console.log("transfer to account", transaction.transfer);
-        if (transaction.amount <= balance) {
-          transaction.amount = balance - transaction.amount;
-          //  await axios.put(`${BASE_URL}/accounts/${accountId}`, transaction);
-
-          // await axios.put(`${BASE_URL}/accounts/${accountId}`, transaction);
-
-        } else {
-          transactionMessageBox.innerText = "Balance Not Sufficient";
-        }
-        break;
-      case 'c':// Close 
-        console.log('Closing...');
-        if (balance == 0) {
-          await axios.delete(`${BASE_URL}/accounts/${accountId}`);
-          window.location.href = '../client'; //one level up
-        } else {
-          transactionMessageBox.innerText = "Withdraw or transfer the balance to close";
-        }
-        break;
-    }
-  }
-  loadPage();
-});
-
-
-function formVerify(transaction) {
-  if (transaction.amount == "" && transaction.action != 'c') {
-    transactionMessageBox.innerText = "Amount is Required ";
-    return false;
-  } else if (transaction.action == "") {
-    transactionMessageBox.innerText = "Action is Required ";
-    return false;
-  } else if ((transaction.action == 'd' || transaction.action == 'w') && transaction.method == "") {
-    transactionMessageBox.innerText = "Method is Required";
-    selectAction.selectedIndex = 0;
-    return false;
-  } else if (transaction.action == 't') {
-    return true;
-  }
-  else {
-    return true;
-  }
+  accountSummaryDiv.innerHTML = accountSummaryStr;
 }
 
-
-
-//======> Transfer Balance
-
-async function getHistoryInfo(accountId) {
+async function showHistoryInfo(accountId) {
   console.log("getting History for account: ", accountId);
   let accountHistoryInfo = await axios.get(`${BASE_URL}/histories/${accountId}`);
   console.log(accountHistoryInfo);
   let accountHistoryStr = "";
 
   accountHistoryInfo.data.forEach(history => {
-
     accountHistoryStr += `<tr>
     <th>${history.createdAt}</th>
     <th>${history.description}</th>
@@ -203,19 +77,16 @@ async function getHistoryInfo(accountId) {
   });
 
   accountHistoryTable.innerHTML = accountHistoryStr;
-
 }
 
+async function getTransferToAccounts() {
+  let transferAccountStr = "";
+  let allAccountsInfo = await axios.get(`${BASE_URL}/accounts`);
+  let transferToAccounts = allAccountsInfo.data.filter(account => account._id != accountId);
+  console.log("All transfer to accounts: ", transferToAccounts);
+  transferToAccounts.forEach(account => {
+    transferAccountStr += `<option balance=${account.balance} value="${account._id}">${account.accountNumber}</option>`;
+  });
 
-
-
-
-
-
-
-
-
-
-
-
-;
+  selectTransferAccount.innerHTML += transferAccountStr;
+}
