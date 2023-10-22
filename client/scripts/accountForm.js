@@ -1,7 +1,7 @@
 const BASE_URL = "http://localhost:3001";
 
 import { dom } from '../pom/account.page.js';
-import { accountId } from './accountScript.js';
+import { accountId, loadPage } from './accountScript.js';
 const selectAction = dom('selectAction');
 const selectMethod = dom('selectMethod');
 const selectTransferAccount = dom('selectTransferAccount');
@@ -17,30 +17,26 @@ selectAction.addEventListener('change', () => {
             selectTransferAccount.style.visibility = "hidden";
             break;
         case 'd'://select Deposit
-            console.log("Deposit");
+            console.log("Selected Deposit");
             selectMethod.style.visibility = "visible";
             selectTransferAccount.style.visibility = "hidden";
-
             break;
         case 'w'://select Withdraw
-            console.log("Withdraw");
+            console.log("Selected Withdraw");
             selectMethod.style.visibility = "visible";
             selectTransferAccount.style.visibility = "hidden";
             break;
         case 't'://select transfer
-            console.log("Transfer");
+            console.log("Selected Transfer");
             selectMethod.style.visibility = "hidden";
             selectTransferAccount.style.visibility = "visible";
             break;
         case 'c'://select close
-            console.log("Close Account");
+            console.log("Selected Close Account");
             selectMethod.style.visibility = "hidden";
-
             break;
-
     }
 });
-
 
 submitActionBtn.addEventListener('click', async (e) => {
     e.preventDefault();
@@ -50,37 +46,28 @@ submitActionBtn.addEventListener('click', async (e) => {
         console.log(key, value);
         transactionBody[key] = value;
     }
-
-    if (formVerify(transactionBody)) {// Form Verification
-
-        switch (transactionBody.action) {//form action router
-            case 'd':// Deposit
-                console.log(`Depositing to ${accountId}`);
-                transactionBody.amount = balance + Number(transactionBody.amount);
+    if (formVerify(transactionBody)) {// Form validation
+        switch (transactionBody.action) {
+            case 'd':
+                console.log('Depositing to ', accountId);
                 await axios.put(`${BASE_URL}/accounts/${accountId}`, transactionBody);
                 break;
-            case 'w':// Withdraw
-                console.log('Withdrawing...');
-                if (transactionBody.amount <= balance) {
-                    transactionBody.amount = balance - transactionBody.amount;
+            case 'w':
+                console.log('Withdrawing from ', accountId);
+                try {
                     await axios.put(`${BASE_URL}/accounts/${accountId}`, transactionBody);
-                } else {
-                    transactionMessageBox.innerText = "Balance Not Sufficient";
+                } catch (error) {
+                    transactionMessageBox.innerText = error.response.data;
                 }
                 break;
-            case 't'://transfer
-                console.log('Transferring...');
-                console.log("transfer from account", accountId);
-                console.log("transfer to account", transaction.transfer);
-                if (transaction.amount <= balance) {
-                    transaction.amount = balance - transaction.amount;
-                    //  await axios.put(`${BASE_URL}/accounts/${accountId}`, transaction);
+            case 't':
+                console.log('Transferring from ', accountId);
+                console.log('transfer to', transactionBody.transferTo);
+                await axios.put(`${BASE_URL}/accounts/${accountId}`, transactionBody);
 
-                    // await axios.put(`${BASE_URL}/accounts/${accountId}`, transaction);
-
-                } else {
-                    transactionMessageBox.innerText = "Balance Not Sufficient";
-                }
+                // } else {
+                //     transactionMessageBox.innerText = "Balance Not Sufficient";
+                // }
                 break;
             case 'c':// Close 
                 console.log('Closing...');
@@ -109,7 +96,7 @@ function formVerify(transactionForm) {
         transactionMessageBox.innerText = "Method is Required";
         selectAction.selectedIndex = 0;
         return false;
-    //}else if (transactionForm.transferTo)
+        //}else if (transactionForm.transferTo)
     } else {
         return true;
     }

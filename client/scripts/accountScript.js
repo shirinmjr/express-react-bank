@@ -9,14 +9,14 @@ const selectMethod = dom('selectMethod');
 const selectTransferAccount = dom('selectTransferAccount');
 const submitActionBtn = dom('submitActionBtn');
 const transactionForm = dom('transactionForm');
-const transactionMessageBox = dom('transactionMessageBox');
+
 
 //Global params need for all transactions
 export let accountId;
-let balance;
 
 
-function loadPage() {
+
+export function loadPage() {
   setDefaultUI();
   getAccountIdNumber();
   showAccountInfo(accountId);
@@ -36,7 +36,7 @@ function setDefaultUI() {
   selectTransferAccount.selectedIndex = 0;
 }
 
-function getAccountIdNumber() {
+export function getAccountIdNumber() {
   const queryString = window.location.search;
   const urlParams = new URLSearchParams(queryString);
   accountId = urlParams.get('acc');
