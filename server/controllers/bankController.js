@@ -1,5 +1,5 @@
 const { User, Account, History } = require('../models');
-const { getAccounts, getAccountById, updateAccountBalance, deleteAccount, getHistoryAll, getHistoryById, createHistory } = require('../dao/account');
+const { getAccounts, getAccountById, updateAccountBalance, deleteAccount, getHistoryAll, getHistoryById, createHistory, deleteHistoryById } = require('../dao/account');
 module.exports = {
     getAllAccounts,
     getOneAccount,
@@ -124,6 +124,7 @@ async function deleteOneAccount(req, res) {
             return res.status(400).send('Withdraw or transfer the balance to close');
         }
         account = await deleteAccount(id);
+        await deleteHistoryById(account._id);
         return res.json(account);
     } catch (error) {
         return res.status(500).send(error.message);
