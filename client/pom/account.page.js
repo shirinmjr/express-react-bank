@@ -7,7 +7,7 @@ const account = {
     selectTransferAccount: 'select-transfer-account',
     submitActionBtn: 'submit-action',
     transactionForm: 'transaction-form',
-    transactionMessageBox: 'message-box'
+    transactionMessageBox: 'message-box',
 };
 
 

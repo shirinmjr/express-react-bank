@@ -61,21 +61,20 @@ submitActionBtn.addEventListener('click', async (e) => {
                 }
                 break;
             case 't':
-                console.log('Transferring from ', accountId);
-                console.log('transfer to', transactionBody.transferTo);
-                await axios.put(`${BASE_URL}/accounts/${accountId}`, transactionBody);
-
-                // } else {
-                //     transactionMessageBox.innerText = "Balance Not Sufficient";
-                // }
+                try {
+                    console.log('Transferring from ', accountId, 'to', transactionBody.transferTo);
+                    await axios.put(`${BASE_URL}/accounts/${accountId}`, transactionBody);
+                } catch (error) {
+                    transactionMessageBox.innerText = error.response.data;
+                }
                 break;
             case 'c':// Close 
-                console.log('Closing...');
-                if (balance == 0) {
+                console.log('Close account ', accountId);
+                try {
                     await axios.delete(`${BASE_URL}/accounts/${accountId}`);
                     window.location.href = '../client'; //one level up
-                } else {
-                    transactionMessageBox.innerText = "Withdraw or transfer the balance to close";
+                } catch (error) {
+                    transactionMessageBox.innerText = error.response.data;
                 }
                 break;
         }
@@ -96,8 +95,8 @@ function formVerify(transactionForm) {
         transactionMessageBox.innerText = "Method is Required";
         selectAction.selectedIndex = 0;
         return false;
-        //}else if (transactionForm.transferTo)
-    } else {
+    }
+    else {
         return true;
     }
 }
