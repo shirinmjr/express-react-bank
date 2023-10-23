@@ -68,7 +68,7 @@ submitActionBtn.addEventListener('click', async (e) => {
                     transactionMessageBox.innerText = error.response.data;
                 }
                 break;
-            case 'c':// Close 
+            case 'c':
                 console.log('Close account ', accountId);
                 try {
                     await axios.delete(`${BASE_URL}/accounts/${accountId}`);
@@ -78,8 +78,9 @@ submitActionBtn.addEventListener('click', async (e) => {
                 }
                 break;
         }
+        loadPage();
     }
-    loadPage();
+
 });
 
 

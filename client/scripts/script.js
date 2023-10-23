@@ -21,14 +21,14 @@ async function getAllAccounts() {
             let status = account.status ? "Open" : "Closed";
             let type = account.type === "SVG" ? "Savings Account" : "Checking Account";
             accountsDisplayStr +=
-                `<a class="button account-link" href="/client/account.html?acc=${account._id}">`
-                + `<button class="account-btn primary-btn">`
-                + `<table class="account-info">`
-                + `<tr class="account-row"><td class="account-data">Account Number:<br/>${account.accountNumber}</td></tr>`
-                + `<tr class="account-row" id=""account-type"><td> ${type}</td></tr>`
-                + ` <tr class="account-row"><td class="account-data">Status: ${status}</td></tr>`
-                + `<tr class="account-row"><td class="account-data" id="account-balance-display">Balance: $${account.balance}</td></tr>`
-                + `</table></button></a>`;
+                `<a class="button account-link" href="/client/account.html?acc=${account._id}">
+                <button class="account-btn primary-btn">
+                <table class="account-info">
+                <tr class="account-row"><td class="account-data">Account Number:<br/>${account.accountNumber}</td></tr>
+                <tr class="account-row" id=""account-type"><td> ${type}</td></tr>
+                <tr class="account-row"><td class="account-data">Status: ${status}</td></tr>
+                <tr class="account-row"><td class="account-data" id="account-balance-display">Balance: $${account.balance}</td></tr>
+                </table></button></a>`;
         });
         accountsContainer.innerHTML = accountsDisplayStr;
         document.querySelectorAll(".account-link").forEach(account => {
