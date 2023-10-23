@@ -8,13 +8,9 @@ const selectAction = dom('selectAction');
 const selectMethod = dom('selectMethod');
 const selectTransferAccount = dom('selectTransferAccount');
 const submitActionBtn = dom('submitActionBtn');
-const transactionForm = dom('transactionForm');
-
 
 //Global params need for all transactions
 export let accountId;
-
-
 
 export function loadPage() {
   setDefaultUI();
@@ -56,7 +52,6 @@ async function showAccountInfo(accountId) {
         <tr><td>Account Balance</td><td>$${accountInfo.data.balance}</td></tr>
         <tr><td>Account Status</td><td>${status}</td></tr>
       </table>`;
-
   accountSummaryDiv.innerHTML = accountSummaryStr;
 }
 
@@ -65,7 +60,6 @@ async function showHistoryInfo(accountId) {
   let accountHistoryInfo = await axios.get(`${BASE_URL}/histories/${accountId}`);
   console.log(accountHistoryInfo);
   let accountHistoryStr = "";
-
   accountHistoryInfo.data.forEach(history => {
     accountHistoryStr += `<tr>
     <th>${history.createdAt}</th>
@@ -75,7 +69,6 @@ async function showHistoryInfo(accountId) {
     <th>$${history.amount}</th>
   </tr>`;
   });
-
   accountHistoryTable.innerHTML = accountHistoryStr;
 }
 

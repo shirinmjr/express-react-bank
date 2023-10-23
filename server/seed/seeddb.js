@@ -45,12 +45,11 @@ const createHistories = async () => {
     console.log("accountsList===>", accountsList);
     const historiesList = [...Array(10)].map(() => {
         return new History({
-            account: chance.pickone(accountsList)._id,
+            account_id: chance.pickone(accountsList)._id,
             description: chance.paragraph({ sentences: 1 }),
             transactionType: chance.pickone(transactionsType),
             method: chance.pickone(methods),
             amount: chance.floating({ min: 200, max: 3000 }),
-            accounts: chance.pickset(accountsList, chance.integer({ min: 1, max: 2 })).map(e => e._id),
         });
     });
     let createHistories = await History.insertMany(historiesList);

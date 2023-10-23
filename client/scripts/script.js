@@ -44,7 +44,7 @@ async function getAllAccounts() {
 createSVGBtn.addEventListener('click', async (e) => {
     console.log("creating a new Checking account...");
     let body = {
-        accountNumber: Math.floor(100000 + Math.random() * 900000),
+        accountNumber: Math.floor(100000000 + Math.random() * 999999999),
         type: "SVG",
         balance: 0,
         status: true,

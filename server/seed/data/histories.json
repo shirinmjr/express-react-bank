@@ -4,47 +4,41 @@
     "description": "this is a test history 01",
     "transactionType": "d",
     "method": "check",
-    "amount": 1000,
-    "accounts": ["65315971d3f86ade735912d0"]
+    "amount": 100
   },
   {
     "account": "",
     "description": "this is a test history 02",
     "transactionType": "w",
     "method": "check",
-    "amount": 200,
-    "accounts": ["65315971d3f86ade735912d1"]
+    "amount": 200
   },
   {
     "account": "",
     "description": "this is a test history 03",
     "transactionType": "t",
     "method": "",
-    "amount": 300,
-    "accounts": ["65315971d3f86ade735912cf", "65315971d3f86ade735912d0"]
+    "amount": 300
   },
   {
     "account": "",
     "description": "this is a test history 02",
     "transactionType": "w",
     "method": "check",
-    "amount": 200,
-    "accounts": ["65315971d3f86ade735912d2"]
+    "amount": 200
   },
   {
     "account": "",
     "description": "this is a test history 02",
     "transactionType": "w",
     "method": "check",
-    "amount": 200,
-    "accounts": ["65315971d3f86ade735912d2"]
+    "amount": 200
   },
   {
     "account": "",
     "description": "this is a test history 02",
     "transactionType": "w",
     "method": "check",
-    "amount": 200,
-    "accounts": ["65315971d3f86ade735912d3"]
+    "amount": 200
   }
 ]

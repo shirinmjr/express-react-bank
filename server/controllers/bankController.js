@@ -1,10 +1,11 @@
 const { User, Account, History } = require('../models');
-const { getAccounts, getAccountById, updateAccountBalance, deleteAccount, getHistory } = require('../dao/account');
+const { getAccounts, getAccountById, updateAccountBalance, deleteAccount, getHistoryAll, getHistoryById, createHistory } = require('../dao/account');
 module.exports = {
     getAllAccounts,
     getOneAccount,
     createBankAccount,
     updateOneAccount,
+    getAllHistory,
     getOneHistoryByAccountId,
     deleteOneAccount
 };
@@ -53,17 +54,30 @@ async function updateOneAccount(req, res) {
         const id = req.params.id;
         let account = await getAccountById(id);
         console.log(account);
+        let history = {
+            account_id: account._id,
+            transactionType: "",
+            description: "",
+            method: req.body.method,
+            amount: req.body.amount
+        };
         switch (req.body.action) {
 
             case 'd':
                 let newBalance = account.balance + Number(req.body.amount);
                 account = await updateAccountBalance(id, newBalance);
+                history.description = `Deposit to account`;
+                history.transactionType = `Deposit`;
+                await createHistory(history);
                 return res.json(account);
 
             case 'w':
                 if (account.balance >= req.body.amount) {
                     let newBalance = account.balance - Number(req.body.amount);
                     account = await updateAccountBalance(id, newBalance);
+                    history.description = `Withdraw account`;
+                    history.transactionType = `Withdraw`;
+                    await createHistory(history);
                     return res.json(account);
                 } else {
                     return res.status(400).send('Balance Not Sufficient');
@@ -73,15 +87,24 @@ async function updateOneAccount(req, res) {
                 if (account.balance >= req.body.amount) {
                     let transferFromBalance = account.balance - Number(req.body.amount);
                     account = await updateAccountBalance(id, transferFromBalance);
+
                     let accountTransfer = await getAccountById(req.body.transferTo);//Getting transfer to account details
                     let transferToBalance = accountTransfer.balance + Number(req.body.amount);
                     accountTransfer = await updateAccountBalance(req.body.transferTo, transferToBalance);
+
+                    history.description = `Transfer to ${accountTransfer.accountNumber}`;
+                    history.transactionType = `Transfer`;
+                    await createHistory(history);
+
+                    history.description = `Transfer from ${account.accountNumber}`;
+                    history.account_id = accountTransfer._id;
+                    history.transactionType = `Transfer`;
+                    await createHistory(history);
                     return res.json(account);
                 } else {
                     return res.status(400).send('Balance Not Sufficient');
                 }
         }
-
     } catch (error) {
         console.log(error);
         return res.status(500).send(error.message);
@@ -109,24 +132,24 @@ async function deleteOneAccount(req, res) {
 
 
 //GET-History
-// async function getAllHistory(req, res) {
-//     const id = req.params.id;
-//     console.log('Getting History for... ', id);
-//     try {
-//         const histories = await getHistory(id);
-//         return res.json(histories);
+async function getAllHistory(req, res) {
+    const id = req.params.id;
+    console.log('Getting All History... ', id);
+    try {
+        const histories = await getHistoryAll();
+        return res.json(histories);
 
-//     } catch (error) {
-//         console.log(error);
-//         return res.status(500).send(error.message);
-//     }
-// }
+    } catch (error) {
+        console.log(error);
+        return res.status(500).send(error.message);
+    }
+}
 
 async function getOneHistoryByAccountId(req, res) {
     console.log("Getting Account History Info...");
     try {
         const id = req.params.id;
-        const history = await History.find({ "account": id });
+        const history = await getHistoryById(id);
         if (history) {
             return res.json(history);
         }
@@ -136,3 +159,4 @@ async function getOneHistoryByAccountId(req, res) {
     }
 }
 
+//createHistories
