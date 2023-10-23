@@ -108,7 +108,7 @@ module.exports = db;
 
 1. Create one user total (✓)
 2. User can create new account by selecting _Create A New Account_ button (Saving / Checking) (✓)
-3. User can see the account number, blanace and the status of the accout (✓)
+3. User can see the account number, balance and the status of the account (✓)
 4. Select and account takes user to the account details page (✓)
 5. Uer can deposit/withdraw to/from all of their account via cash,check (✓)
 6. User can delete their account but they need to transfer the balance before that. Balance need to be 0 before request to close an account (✓)
@@ -128,7 +128,7 @@ Previews:
 2. User can login (Google Auth)
 3. User can transfer money from one account to another account and can see a history record on bot(to/from) accounts (✓)
 4. Random deposits: Receiving a random payrolls deposit.
-5. There is no bussiess logic handled in the front-end (✓)
+5. There is no business logic handled in the front-end (✓)
 
 
 ## 🚀 Run & Deployment <a name = "deployment"></a>
