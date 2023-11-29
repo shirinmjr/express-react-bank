@@ -27,7 +27,9 @@
 - [About](#about)
 - [Versions:](#versions)
   - 🔧 [V1](#v1)
+    - [Built Using](built_using_v1) 
   - 🔧 [V2](#v2)
+    -  - [Built Using](built_using_v2)  
 - [Authors](#authors)
 - [Acknowledgments](#acknowledgement)
 
@@ -96,7 +98,7 @@ module.exports = db;
 
 ## 🔧 V1 <a name = "#v1"></a> [express-mongo-bank](https://github.com/shirinmjr/express-mongo-bank)
 
-## ⛏️ Built Using <a name = "built_using"></a>
+## ⛏️ Built Using <a name = "#built_using_v1"></a>
 
 - [MongoDB](https://www.mongodb.com/) - Database
   - mongoose - Database Framework
@@ -133,6 +135,20 @@ Previews:
 </p>
 
 ## 🔧 V2 <a name = "#v2"></a>
+
+## ⛏️ Built Using <a name = "built_using_v2"></a>
+
+- [MongoDB](https://www.mongodb.com/) - Database
+  - mongoose - Database Framework
+  - nodemon
+- [Express](https://expressjs.com/) - Server Framework
+- [NodeJs](https://nodejs.org/en/) - Server Environment
+- [CORS](https://www.npmjs.com/package/cors) - Connect/Express middleware
+- [Morgan](https://www.npmjs.com/package/morgan) - HTTP request logger middleware for node.js
+- [Live Server](https://marketplace.visualstudio.com/items?itemName=ritwickdey.LiveServer) - A Quick Development Live Server with live browser reload.
+
+make sure you have live Server extension installed
+
 
 1. User can login (Google Auth)
 2. Migrate UI from ES6 to React
