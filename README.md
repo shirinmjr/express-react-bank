@@ -27,9 +27,11 @@
 - [About](#about)
 - [Versions:](#versions)
   - 🔧 [V1](#v1)
-    - [Built Using](built_using_v1) 
+    - [Built Using](built_using_v1)
+    - [Goals]
+    - [Streach Goals]
   - 🔧 [V2](#v2)
-    -  - [Built Using](built_using_v2)  
+    - [Built Using](built_using_v2)  
 - [Authors](#authors)
 - [Acknowledgments](#acknowledgement)
 
