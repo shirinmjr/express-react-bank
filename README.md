@@ -31,7 +31,7 @@
 - [Authors](#authors)
 - [Acknowledgments](#acknowledgement)
 
-# [Mongo Express Bank](https://github.com/shirinmjr/express-mongo-bank)
+# Mongo Express Bank
 
 This is a experimental project to create a full CRUD app using the best practices and latest tech stack.
 
@@ -94,7 +94,7 @@ module.exports = db;
 
 # Versions <a name = "#versions"></a>
 
-## 🔧 V1 <a name = "#v1"></a>
+## 🔧 V1 <a name = "#v1"></a> [express-mongo-bank](https://github.com/shirinmjr/express-mongo-bank)
 
 ## ⛏️ Built Using <a name = "built_using"></a>
 
