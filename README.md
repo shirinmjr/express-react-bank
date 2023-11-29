@@ -33,7 +33,9 @@
 
 # Mongo Express Bank
 
-This is a experimental project to create a full CRUD app. To do so, we're experimenting with a banking system in which user can:
+This is a experimental project to create a full CRUD app using the best practices and latest tech stack.
+
+To do so, we're experimenting with a banking system and the goal is to user:
 
 - Create accounts(Saving and Checking) - Create
 - Create Log Record Per Transaction - Create
@@ -42,22 +44,9 @@ This is a experimental project to create a full CRUD app. To do so, we're experi
 - Withdraw Funds - Update
 - Close an account - Delete
 
-### Stretch Goals - it's always a nice surprise!
 
-## ⛏️ Built Using <a name = "built_using"></a>
 
-- [MongoDB](https://www.mongodb.com/) - Database
-  - mongoose - Database Framework
-  - nodemon
-- [Express](https://expressjs.com/) - Server Framework
-- [NodeJs](https://nodejs.org/en/) - Server Environment
-- [CORS](https://www.npmjs.com/package/cors) - Connect/Express middleware
-- [Morgan](https://www.npmjs.com/package/morgan) - HTTP request logger middleware for node.js
-- [Live Server](https://marketplace.visualstudio.com/items?itemName=ritwickdey.LiveServer) - A Quick Development Live Server with live browser reload.
-
-make sure you have live Server extension install
-
-# Setups:
+# Setup an express project(will be moved later):
 
 ```sh
 npm init -y
@@ -82,6 +71,7 @@ For your `index.html`
 <script src=".scripts/script.js" type="module" defer></script>
 <link rel="stylesheet" href="style/style.css" />
 ```
+# Setup mongo db (will be moved later):
 
 config/db file,
 
@@ -106,13 +96,33 @@ module.exports = db;
 
 ## 🔧 V1 <a name = "#v1"></a>
 
+## ⛏️ Built Using <a name = "built_using"></a>
+
+- [MongoDB](https://www.mongodb.com/) - Database
+  - mongoose - Database Framework
+  - nodemon
+- [Express](https://expressjs.com/) - Server Framework
+- [NodeJs](https://nodejs.org/en/) - Server Environment
+- [CORS](https://www.npmjs.com/package/cors) - Connect/Express middleware
+- [Morgan](https://www.npmjs.com/package/morgan) - HTTP request logger middleware for node.js
+- [Live Server](https://marketplace.visualstudio.com/items?itemName=ritwickdey.LiveServer) - A Quick Development Live Server with live browser reload.
+
+make sure you have live Server extension installed
+
+Goals:
+
 1. Create one user total (✓)
 2. User can create new account by selecting _Create A New Account_ button (Saving / Checking) (✓)
-3. User can see the account number, balance and the status of the account (✓)
+3. User can see the account number, balance and the status of the account (if it's open) (✓)
 4. Select and account takes user to the account details page (✓)
-5. Uer can deposit/withdraw to/from all of their account via cash,check (✓)
+5. Uer can deposit/withdraw and transfer to/from all of their account via cash,check (✓)
 6. User can delete their account but they need to transfer the balance before that. Balance need to be 0 before request to close an account (✓)
-7. User can see a history of transactions in their account page(dummy data). History table does exits but not a representation of the actual account (✓)
+7. User can see a history of transactions in their account page(reflecting account transactions). (✓)
+
+### Stretch Goals - it's always a nice surprise!
+1. Account history gets updated as transactions happened (✓)
+2. User can transfer money from one account to another account and can see a history record on bot(to/from) accounts (✓)
+3. There is no business logic handled in the front-end (✓)
 
 Previews:
 
@@ -124,12 +134,11 @@ Previews:
 
 ## 🔧 V2 <a name = "#v2"></a>
 
-1. Account history gets updated as transactions happened (✓)
-2. User can login (Google Auth)
-3. User can transfer money from one account to another account and can see a history record on bot(to/from) accounts (✓)
-4. Random deposits: Receiving a random payrolls deposit.
-5. There is no business logic handled in the front-end (✓)
+1. User can login (Google Auth)
+2. Migrate UI from ES6 to React
+3. 
 
+### Stretch Goals - it's always a nice surprise!
 
 ## 🚀 Run & Deployment <a name = "deployment"></a>
 
