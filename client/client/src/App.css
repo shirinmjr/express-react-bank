@@ -3,6 +3,8 @@
   margin: 0 auto;
   padding: 2rem;
   text-align: center;
+  background-color: white;
+  color:black
 }
 
 .navbar {
@@ -10,7 +12,7 @@
   justify-content: center;
   align-items: center;
   flex-direction: row;
-  background-color: rgba(160, 212, 202, 0.949);
+  background-color: #4898c9;
   /* border-bottom: 1px solid black; */
 }
 .nav-a {
@@ -24,7 +26,30 @@
   color: black;
   font-size: 18px;
 }
+.primary-btn {
+  background-color: #4898c9;
+  font-size: 12px;
+  border-radius: 5px;
+  border: none;
+  color: white;
+  font-weight: bold;
+  line-height: 25px;
+  padding: 10px;
+  box-shadow: 0 8px 16px 0 rgba(255, 255, 255, 0.707), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  cursor: pointer;
+  -webkit-transition-duration: 0.4s; /* Safari */
+  transition-duration: 0.4s;
+}
+.primary-btn:hover {
+  box-shadow: 0 30px 36px 0 rgba(0, 0, 0, 0.24), 0 17px 50px 0 rgba(0, 0, 0, 0.19);
+}
 
+.home-auth-buttons{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: row;
+}
 
 .logo {
   height: 6em;
