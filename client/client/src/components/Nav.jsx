@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
-// import SearchBar from "./SearchBar";
+import { useAuth0 } from "@auth0/auth0-react";
 import login from '../assets/login.png';
 import appLogo from '../assets/bank.png';
 import gitHub from '../assets/github-logo-light.png';
@@ -13,32 +13,28 @@ import Profile from "./Profile";
 const Nav = () => {
 
 
+    const { user, isAuthenticated, isLoading, getAccessTokenSilently } = useAuth0();
 
 
     return (
         <>
+
             <div className="navbar">
-                <p>
-                    <Link className="nav-a" to='/about'>
-
-                        <img height='50px' width='50px' src={gitHub} />
-                    </Link>
-
-                    <Link className="nav-a" to='/about'>
-
-                        <img height='50px' width='50px' src={appLogo} />
-                    </Link>
-
-                    <Link className="nav-a" to="/login"><img height='50px' width='50px' src={login} />
+                <div>
+                    <Profile />
+                </div>
+                <div>
+                    <Link className="nav-item app-title" to='/about'><h1>React Bank</h1></Link>
+                </div>
+                <div className="nav-item">
+                    {isAuthenticated ? <LogoutButton /> : <LoginButton />}
+                </div>
 
 
-                        <LoginButton />
-                        <LogoutButton />
-                    
 
-                    </Link>
-                </p>
-                <Profile />
+
+
+
             </div>
         </>
     );

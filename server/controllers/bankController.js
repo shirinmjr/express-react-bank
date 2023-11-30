@@ -1,14 +1,22 @@
 const { User, Account, History } = require('../models');
-const { getAccounts, getAccountById, updateAccountBalance, deleteAccount, getHistoryAll, getHistoryById, createHistory, deleteHistoryById } = require('../dao/account');
+const { getUsers, getAccounts, getAccountById, updateAccountBalance, deleteAccount, getHistoryAll, getHistoryById, createHistory, deleteHistoryById } = require('../dao/account');
 module.exports = {
+    getAllUsers,
     getAllAccounts,
     getOneAccount,
     createBankAccount,
     updateOneAccount,
     getAllHistory,
     getOneHistoryByAccountId,
-    deleteOneAccount
+    deleteOneAccount,
+    manageUserRecord
 };
+
+//GET-User
+async function getAllUsers(req, res) {
+    console.log("Getting all users...");
+}
+
 
 //GET-account
 async function getAllAccounts(req, res) {
@@ -160,4 +168,12 @@ async function getOneHistoryByAccountId(req, res) {
     }
 }
 
-//createHistories
+//createUser
+async function manageUserRecord(req, res) {
+    console.log("Getting User Info...");
+    const email = req.params.email;
+    console.log(email);
+    // const userInfo = await getUserInfo(email);
+
+    console.log(email);
+}

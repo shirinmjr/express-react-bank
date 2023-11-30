@@ -1,14 +1,16 @@
-import LoginButton from './LoginButton';
-import LogoutPage from './LogoutButton';
-import Profile from './Profile';
 import AccountList from './AccountsList';
+import NewAccount from './NewAccount';
 
 export default function Home(props) {
 
     return (
         <div>
-            <h2>Welcome to React Bank</h2>
-            <AccountList />
+            <div>
+                <NewAccount />
+            </div>
+            <div>
+                <AccountList />
+            </div>
         </div>
     );
 }

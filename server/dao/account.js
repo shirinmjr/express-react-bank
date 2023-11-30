@@ -2,6 +2,7 @@ const { User, Account, History } = require('../models');
 
 
 module.exports = {
+    getUsers,
     getAccounts,
     getAccountById,
     updateAccountBalance,
@@ -11,6 +12,7 @@ module.exports = {
     createHistory,
     deleteHistoryById,
 };
+async function getUsers() { return await User.find(); }
 async function getAccounts() { return await Account.find(); }
 async function getAccountById(id) { return await Account.findById(id); };
 async function updateAccountBalance(id, newBalance) {

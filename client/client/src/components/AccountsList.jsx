@@ -1,30 +1,38 @@
 import { useEffect, useState } from "react";
+import { Link } from 'react-router-dom';
+import Card from 'react-bootstrap/Card';
 import axios from 'axios';
 
 const BASE_URL = "http://localhost:3001";
-
-let accountsBtn;
 
 const AccountsList = () => {
     const [accounts, setAccounts] = useState([]);
 
     useEffect(() => {
-
-
         const getAllAccounts = async () => {
             const allAccounts = await axios.get(`${BASE_URL}/accounts`);
             console.log('all accounts:', allAccounts.data);
-            setAccounts(allAccounts);
+            setAccounts(allAccounts.data);
         };
         getAllAccounts();
-
-        // console.log("state", questions);
     }, []);
-console.log(accounts)
+    console.log(accounts);
 
     return (
         <div>
-            <h1>Accounts</h1></div>
+            {accounts.map((account, index) => (<Link key={index} className='button account-link' to="/client/account.html?acc=${account._id}">
+                <Card className="mb-2 text-muted">
+                    <Card.Body className="mb-2 text-muted">
+                        <Card.Title>Account Number: {account.accountNumber}</Card.Title>
+                        <Card.Subtitle>Account Balance: {account.balance}</Card.Subtitle>
+                        <Card.Subtitle>Status: {account.status ? "Open" : "Closed"}</Card.Subtitle>
+                        <Card.Subtitle>Type: {account.type === "SVG" ? "Savings Account" : "Checking Account"}</Card.Subtitle>
+                    </Card.Body>
+                </Card>
+            </Link>
+            ))
+            }
+        </div>
     );
 };
 

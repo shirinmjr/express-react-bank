@@ -16,7 +16,7 @@ app.use(logger('dev'));
 app.use(express.urlencoded({ extended: true }));
 
 app.get("/", (req, res) => res.send({ msg: "This is root!" }));
-//app.get("/users", bankController.getAllUsers);//get all users
+app.get("/users", bankController.getAllUsers);//get all users
 //app.post('/users', bankController.createUser);//create a new user
 
 app.get("/accounts", bankController.getAllAccounts);//get all accounts
