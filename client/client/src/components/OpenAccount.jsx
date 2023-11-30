@@ -3,8 +3,7 @@ import axios from 'axios';
 const BASE_URL = "http://localhost:3001";
 
 async function createSVGAccount() {
-
-    console.log("creating a new Checking account...");
+    console.log("creating a new Savings account...");
     let body = {
         accountNumber: Math.floor(100000000 + Math.random() * 999999999),
         type: "SVG",
@@ -38,7 +37,7 @@ async function createCHKAccount() {
 
 };
 
-const NewAccount = () => {
+const OpenAccount = () => {
     return (
         <div className='new-account-buttons'>
             <Button className='primary-btn new-svg-btn'
@@ -51,5 +50,5 @@ const NewAccount = () => {
     );
 };
 
-export default NewAccount;
+export default OpenAccount;
 

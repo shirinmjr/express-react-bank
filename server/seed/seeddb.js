@@ -18,8 +18,8 @@ const createUsers = async () => {
     await User.deleteMany();
     usersList = users.map((user) => {
         return new User({
-            username: user.username,
-            password: user.password
+            email: user.email,
+            name: user.name
         });
     });
     let createUsers = await User.insertMany(usersList);

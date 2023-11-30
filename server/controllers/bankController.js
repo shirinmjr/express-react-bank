@@ -1,7 +1,9 @@
 const { User, Account, History } = require('../models');
-const { getUsers, getAccounts, getAccountById, updateAccountBalance, deleteAccount, getHistoryAll, getHistoryById, createHistory, deleteHistoryById } = require('../dao/account');
+const { getUsers, getUserByEmail, createUser, getAccounts, getAccountById, updateAccountBalance, deleteAccount, getHistoryAll, getHistoryById, createHistory, deleteHistoryById } = require('../dao/account');
 module.exports = {
     getAllUsers,
+    getOneUser,
+    createOneUser,
     getAllAccounts,
     getOneAccount,
     createBankAccount,
@@ -9,14 +11,58 @@ module.exports = {
     getAllHistory,
     getOneHistoryByAccountId,
     deleteOneAccount,
-    manageUserRecord
 };
 
 //GET-User
 async function getAllUsers(req, res) {
     console.log("Getting all users...");
+    try {
+        const users = await getUsers();
+        return res.json(users);
+    } catch (error) {
+        console.log(error);
+        return res.status(500).send(error.message);
+    }
 }
 
+async function getOneUser(req, res) {
+    console.log("Getting one user info...");
+    try {
+        const email = req.params.email;
+        let user = await getUserByEmail(email);
+        console.log("=========", user);
+        if (user) {
+            return res.json(user);
+        } else {
+            console.log("create the user.....");
+            // createOneUser(req,res)
+        }
+        return res.status(404).send('User with this email does not exist.');
+    } catch (error) {
+        console.log(error);
+        return res.status(500).send(error.message);
+    }
+}
+//POST-User
+async function createOneUser(req, res) {
+    console.log("Creating user...");
+    console.log(req);
+    try {
+        let user = {
+            email: req.body.email,
+            name: req.body.name
+        };
+        let newUser = await createUser(user);
+        if (newUser) {
+            return res.json(newUser);
+        }
+        return res.status(404).send('User with this email does not exist.');
+    } catch (error) {
+        console.log(error);
+        return res.status(500).send(error.message);
+    }
+
+}
 
 //GET-account
 async function getAllAccounts(req, res) {
@@ -166,14 +212,4 @@ async function getOneHistoryByAccountId(req, res) {
     } catch (error) {
         return res.status(500).send(error.message);
     }
-}
-
-//createUser
-async function manageUserRecord(req, res) {
-    console.log("Getting User Info...");
-    const email = req.params.email;
-    console.log(email);
-    // const userInfo = await getUserInfo(email);
-
-    console.log(email);
 }
