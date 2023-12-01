@@ -2,7 +2,7 @@ import { Route, Routes } from "react-router-dom";
 import Nav from "./Nav";
 import Home from "./Home";
 
-function Main() {
+function Main({user}) {
     return (
         <div>
             <div className='header-container'>
@@ -10,7 +10,7 @@ function Main() {
             </div>
             <div className='Main'>
                 <Routes>
-                    <Route path='/' exact={true} element={<Home />} />
+                    <Route path='/' exact={true} element={<Home user={user} />} />
 
                 </Routes>
             </div>

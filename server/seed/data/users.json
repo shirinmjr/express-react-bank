@@ -1,10 +1,12 @@
 [
   {
     "email": "testuser1@test.com",
-    "name": "Test User1"
+    "name": "Test User1",
+    "auth": "2312312434545546657"
   },
   {
     "email": "testuser2@test.com",
-    "name": "Test User2"
+    "name": "Test User2",
+    "auth": "2312312434545546657"
   }
 ]

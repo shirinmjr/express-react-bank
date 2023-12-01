@@ -24,7 +24,7 @@ const Nav = () => {
                     <Profile />
                 </div>
                 <div>
-                    <Link className="nav-item app-title" to='/about'><h1>React Bank</h1></Link>
+                    <Link className="nav-item app-title" to='/about'><h1>Express Bank</h1></Link>
                 </div>
                 <div className="nav-item">
                     {isAuthenticated ? <LogoutButton /> : <LoginButton />}

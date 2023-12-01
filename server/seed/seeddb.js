@@ -19,7 +19,8 @@ const createUsers = async () => {
     usersList = users.map((user) => {
         return new User({
             email: user.email,
-            name: user.name
+            name: user.name,
+            auth: user.auth
         });
     });
     let createUsers = await User.insertMany(usersList);

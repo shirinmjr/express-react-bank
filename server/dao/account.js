@@ -17,7 +17,7 @@ module.exports = {
 async function getUsers() { return await User.find(); }
 async function getUserByEmail(email) { return await User.findOne({ email: email }); }
 async function createUser(user) { return await User.insertMany(user); }
-async function getAccounts() { return await Account.find(); }
+async function getAccounts() { return await Account.find({}); }
 async function getAccountById(id) { return await Account.findById(id); };
 async function updateAccountBalance(id, newBalance) {
     const filter = { _id: id };

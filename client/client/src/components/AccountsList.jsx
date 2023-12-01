@@ -5,21 +5,13 @@ import axios from 'axios';
 
 const BASE_URL = "http://localhost:3001";
 
-const AccountsList = () => {
-    const [accounts, setAccounts] = useState([]);
+const AccountsList = ({ accounts }) => {
 
-    useEffect(() => {
-        const getAllAccounts = async () => {
-            const allAccounts = await axios.get(`${BASE_URL}/accounts`);
-            console.log('all accounts:', allAccounts.data);
-            setAccounts(allAccounts.data);
-        };
-        getAllAccounts();
-    }, []);
-    console.log(accounts);
+
 
     return (
         <div>
+
             {accounts.map((account, index) => (<Link key={index} className='button account-link' to="/client/account.html?acc=${account._id}">
                 <Card className="mb-2 text-muted">
                     <Card.Body className="mb-2 text-muted">
@@ -32,6 +24,8 @@ const AccountsList = () => {
             </Link>
             ))
             }
+
+
         </div>
     );
 };

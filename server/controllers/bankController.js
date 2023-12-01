@@ -2,7 +2,8 @@ const { User, Account, History } = require('../models');
 const { getUsers, getUserByEmail, createUser, getAccounts, getAccountById, updateAccountBalance, deleteAccount, getHistoryAll, getHistoryById, createHistory, deleteHistoryById } = require('../dao/account');
 module.exports = {
     getAllUsers,
-    getOneUser,
+    manageOneUser,
+    getOrCreateOneUser,
     createOneUser,
     getAllAccounts,
     getOneAccount,
@@ -25,17 +26,34 @@ async function getAllUsers(req, res) {
     }
 }
 
-async function getOneUser(req, res) {
+
+
+async function getOrCreateOneUser(req, res) {
     console.log("Getting one user info...");
+    console.log(req.body);
+    const { email, name, auth } = req.body;
     try {
         const email = req.params.email;
         let user = await getUserByEmail(email);
-        console.log("=========", user);
-        if (user) {
+        if (user) {//If user already exists in db
             return res.json(user);
         } else {
             console.log("create the user.....");
-            // createOneUser(req,res)
+            try {//If user does not exists in db
+                // let user = {
+                //     "email": req.body.email,
+                //     "name": req.body.name,
+                //     "auth": req.body.sub
+                // };
+                // console.log(user);
+                let newUser = await createUser({ email, name, auth });
+                if (newUser) {
+                    return res.json(newUser);
+                }
+            } catch (error) {
+                console.log(error);
+                return res.status(500).send(error.message);
+            }
         }
         return res.status(404).send('User with this email does not exist.');
     } catch (error) {
@@ -46,7 +64,6 @@ async function getOneUser(req, res) {
 //POST-User
 async function createOneUser(req, res) {
     console.log("Creating user...");
-    console.log(req);
     try {
         let user = {
             email: req.body.email,
@@ -61,6 +78,10 @@ async function createOneUser(req, res) {
         console.log(error);
         return res.status(500).send(error.message);
     }
+}
+
+async function manageOneUser(req, res) {
+
 
 }
 
@@ -69,6 +90,7 @@ async function getAllAccounts(req, res) {
     console.log("Getting all accounts...");
     try {
         const accounts = await getAccounts();
+        console.log(accounts);
         return res.json(accounts);
 
     } catch (error) {
@@ -94,8 +116,14 @@ async function getOneAccount(req, res) {
 
 //POST-account
 async function createBankAccount(req, res) {
+    const { accountNumber, type, balance, status } = req.body;
+
     try {
-        const bankAccount = await Account.create(req.body);
+        const user = await User.findOne({ "auth": req.body.auth });
+        console.log(user);
+        const account = { accountNumber, type, balance, status, user: user._id };
+        const bankAccount = await Account.create(account);
+        console.log(bankAccount);
         return res.status(201).json({ bankAccount });
     } catch (error) {
         return res.status(500).send(error.message);

@@ -4,12 +4,7 @@
   /* max-width: 1280vw; */
   text-align: center;
   background-color: white;
-  color:black
-}
-
-.App {
-  display: grid;
-  min-height: 100vh;
+  color:black;
   grid-template-rows: max-content 1fr;
 }
 
@@ -19,12 +14,12 @@
 }
 
 .Main {
-  background-color: #23E1CE;
+  background-color: #ffffff;
   max-width: 100vw;
 }
 
 .Footer {
-  background-color: #026C71;
+  background-color: 0A3161;
 }
 
 .navbar {
@@ -32,13 +27,14 @@
   justify-content: center;
   align-items: center;
   flex-direction: row;
-  background-color: #4898c9;
+  background-color: #0A3161;
   /* border-bottom: 1px solid black; */
 }
 .nav-item {
   text-decoration: none;
-  color: rgb(10, 10, 10);
-  font-size: 20px;
+  color: #ffffff;
+  font-family:Georgia, 'Times New Roman', Times, serif;
+  font-size: 15px;
   padding: 60px;
   margin: 30px;
 }
@@ -48,15 +44,15 @@
   font-size: 18px;
 }
 .primary-btn {
-  background-color: #4898c9;
+  background-color: #B31942;
   font-size: 12px;
   border-radius: 5px;
-  border: none;
-  color: white;
+  border: 1px solid #FFFFFF;
+  color: #FFFFFF;
   font-weight: bold;
   line-height: 25px;
   padding: 10px;
-  box-shadow: 0 8px 16px 0 rgba(255, 255, 255, 0.707), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  /* box-shadow: 0 8px 16px 0 rgba(255, 255, 255, 0.707), 0 6px 20px 0 rgba(0, 0, 0, 0.19); */
   cursor: pointer;
   -webkit-transition-duration: 0.4s; /* Safari */
   transition-duration: 0.4s;
@@ -101,8 +97,21 @@
 }
 
 .card {
+  background-color: #0A3161;
+  border: solid 5px #B31942;
+  font-size: 20px;
+font-family:serif;
+  display: flex;
+  flex-direction: row;
+  border-radius: 1em;
+  color:#FFFFFF;
+  max-width: 25%;
   padding: 2em;
+  margin: 10px;
 
+}
+.card:hover {
+  box-shadow: 0 30px 36px 0 rgba(0, 0, 0, 0.24), 0 17px 50px 0 rgba(0, 0, 0, 0.19);
 }
 
 .read-the-docs {
@@ -114,15 +123,17 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  border-radius: 10%;
+  border-radius: 1em;
 }
 .profile-item{
-
+color:#FFFFFF;
+font-size: 25px;
+margin-left:50px;
 }
 
 .profile-img{
-  /* width: 100px;
-  border-radius: 50%; */
+  border-radius: 1em;
+  padding: 10px;
 
 }
 

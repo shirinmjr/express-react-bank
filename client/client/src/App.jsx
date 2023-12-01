@@ -7,48 +7,47 @@ import './App.css';
 import axios from 'axios';
 
 const BASE_URL = "http://localhost:3001";
-
+let appUser;
 async function getUserInfo(user) {
 
-  user.email = "testuser4@test.com";
-  let appUser;
   try {
-    appUser = await axios.get(`${BASE_URL}/users/${user.email}`);
-    console.log("user information:", appUser);
+
+    const body = {
+      "email": user.email,
+      "name": user.name,
+      "auth": user.sub
+    };
+
+    console.log(body);
+    let userInfo = await axios.post(`${BASE_URL}/users/${user.email}`, body);
+
+    console.log("user information:", userInfo);
+    user = userInfo;
 
   } catch (error) {
     console.log(error);
-    return res.status(500).send(error.message);
   }
-  return appUser;
+
+  console.log(user);
 
 
 }
 
 function App() {
   const { user, isAuthenticated, isLoading, getAccessTokenSilently } = useAuth0();
+
   useEffect(() => {
-    let userInfo = isAuthenticated ? getUserInfo(user) : console.log("User is not Authenticated");
-    // if (isAuthenticated) {
-    //   console.log(" Authenticated");
-
-    //   let userInfo = getUserInfo(user);
-    console.log("this is user:", userInfo);
-    // } else {
-    //   console.log("User is not Authenticated");
-    // }
-    //save user in the db and get the id back
+    console.log(isAuthenticated);
+    isAuthenticated ? getUserInfo(user) : console.log("You are not authenticated!");
 
 
+  }, [isAuthenticated]);
 
-  }, []);
-
-  return (
-    <div className='app'>
-      <div className='main-container'>
-        <Main />
-      </div>
+  return (<div className='app'>
+    <div className='main-container'>
+      <Main user={user} />
     </div>
+  </div>
   );
 }
 
