@@ -88,6 +88,8 @@ async function manageOneUser(req, res) {
 //GET-account
 async function getAllAccounts(req, res) {
     console.log("Getting all accounts...");
+
+
     try {
         const accounts = await getAccounts();
         console.log(accounts);

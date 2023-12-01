@@ -12,11 +12,14 @@ export default function Home({ user }) {
     useEffect(() => {
         getAllAccounts();
     }, []);
-    console.log(accounts);
 
     const getAllAccounts = async () => {
-        const allAccounts = await axios.get(`${BASE_URL}/accounts`);
-        console.log('all accounts:', allAccounts.data);
+        console.log("user in homepage", user);
+        const params = {
+
+        };
+        const allAccounts = await axios.get(`${BASE_URL}/accounts`, { params });
+        console.log('all of my accounts:', allAccounts.data);
         setAccounts(allAccounts.data);
     };
 
@@ -24,7 +27,7 @@ export default function Home({ user }) {
     return (
         <div>
             <div>
-             <OpenAccount callBack={getAllAccounts} user={user} accounts={accounts} />
+                <OpenAccount callBack={getAllAccounts} user={user} accounts={accounts} />
             </div>
             <div>
                 <AccountList accounts={accounts} />

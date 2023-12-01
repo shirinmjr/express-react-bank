@@ -33,7 +33,7 @@ const OpenAccount = ({ user, callBack }) => {
             type: "SVG",
             balance: 0,
             status: true,
-            auth: user.sub
+            auth: user[0].auth
         };
         try {
             let newAccount = await axios.post(`${BASE_URL}/accounts`, body);

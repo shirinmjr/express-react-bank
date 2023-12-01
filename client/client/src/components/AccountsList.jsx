@@ -1,8 +1,6 @@
 import { useEffect, useState } from "react";
 import { Link } from 'react-router-dom';
 import Card from 'react-bootstrap/Card';
-import axios from 'axios';
-
 const BASE_URL = "http://localhost:3001";
 
 const AccountsList = ({ accounts }) => {
@@ -10,9 +8,10 @@ const AccountsList = ({ accounts }) => {
 
 
     return (
-        <div>
+        <div className="accounts-container">
 
-            {accounts.map((account, index) => (<Link key={index} className='button account-link' to="/client/account.html?acc=${account._id}">
+            {accounts.map((account, index) => (<Link key={index} className='button account-link' to={
+                `/accounts/${account._id}`}>
                 <Card className="mb-2 text-muted">
                     <Card.Body className="mb-2 text-muted">
                         <Card.Title>Account Number: {account.accountNumber}</Card.Title>
