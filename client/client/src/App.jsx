@@ -9,15 +9,18 @@ const BASE_URL = "http://localhost:3001";
 
 function App() {
   const { user, isAuthenticated } = useAuth0();
-  const [appUser, setAppUser] = useState({});
+  const [appUser, setAppUser] = useState();
 
   useEffect(() => {
     console.log("Is user Authenticated?", isAuthenticated);
-    if (isAuthenticated) {
+    console.log("appUser", appUser);
+
+    if (isAuthenticated && !appUser) {
       getUserInfo(user);
     }
 
     async function getUserInfo(user) {
+      console.log("user in getUserInfo()", user);
       try {
         const body = {
           "email": user.email,
@@ -25,20 +28,32 @@ function App() {
           "auth": user.sub
         };
         let userInfo = await axios.post(`${BASE_URL}/users/${user.email}`, body);
+
         setAppUser(userInfo.data);
+
+
 
       } catch (error) {
         console.log(error);
       }
     }
-  }, [isAuthenticated]);
+  }, [isAuthenticated, appUser]);
+
+  // useEffect(() => { 
+  //   console.log(appUser);
+  // },[appUser])
 
 
 
   return (<div className='app'>
-    <div className='main-container'>
-      <Main user={appUser} />
-    </div>
+
+    {appUser ? (
+      <div className='main-container'>
+        <Main user={appUser} />
+      </div>
+    ) : (
+      <p>Loading...</p>
+    )}
   </div>
   );
 }

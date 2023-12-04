@@ -1,5 +1,4 @@
 const { Schema } = require('mongoose');
-const { User } = require('.');
 
 const Account = new Schema(
     {
@@ -7,12 +6,13 @@ const Account = new Schema(
         type: { type: String, required: true },
         balance: { type: Number, required: true },
         status: { type: Boolean, required: true },
-        user: { type: Schema.Types.ObjectId, required: true, ref: 'User' }
-
+        user: { type: String, required: true, ref: 'User' }
     },
     { timestamps: true }
 );
 
 module.exports = Account;
 
-//        user: { type: Schema.Types.ObjectId, required: true, ref: 'User' }
+// Note: if wanted to use ._id instead of auth
+//const { User } = require('.');
+//user: { type: Schema.Types.ObjectId, required: true, ref: 'User'; }

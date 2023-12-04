@@ -14,12 +14,12 @@ export default function Home({ user }) {
     }, []);
 
     const getAllAccounts = async () => {
-        console.log("user in homepage", user);
+        //  console.log("user in homepage", user);
         const params = {
 
         };
         const allAccounts = await axios.get(`${BASE_URL}/accounts`, { params });
-        console.log('all of my accounts:', allAccounts.data);
+        // console.log('all of my accounts in Home:', allAccounts.data);
         setAccounts(allAccounts.data);
     };
 

@@ -1,5 +1,5 @@
 const { User, Account, History } = require('../models');
-const { getUsers, getUserByEmail, createUser, getAccounts, getAccountById, updateAccountBalance, deleteAccount, getHistoryAll, getHistoryById, createHistory, deleteHistoryById } = require('../dao/account');
+const { getUsers, getUserByEmail, createUser, createAccount, getAccounts, getAccountById, updateAccountBalance, deleteAccount, getHistoryAll, getHistoryById, createHistory, deleteHistoryById } = require('../dao/account');
 module.exports = {
     getAllUsers,
     manageOneUser,
@@ -88,8 +88,6 @@ async function manageOneUser(req, res) {
 //GET-account
 async function getAllAccounts(req, res) {
     console.log("Getting all accounts...");
-
-
     try {
         const accounts = await getAccounts();
         console.log(accounts);
@@ -119,12 +117,12 @@ async function getOneAccount(req, res) {
 //POST-account
 async function createBankAccount(req, res) {
     const { accountNumber, type, balance, status } = req.body;
-
     try {
         const user = await User.findOne({ "auth": req.body.auth });
-        console.log(user);
-        const account = { accountNumber, type, balance, status, user: user._id };
-        const bankAccount = await Account.create(account);
+        console.log("this is the", user);
+        const account = { accountNumber, type, balance, status, user: user.auth };
+        console.log("REQUEST:", account);
+        let bankAccount = await createAccount(account);
         console.log(bankAccount);
         return res.status(201).json({ bankAccount });
     } catch (error) {

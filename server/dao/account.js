@@ -5,6 +5,7 @@ module.exports = {
     getUsers,
     getUserByEmail,
     createUser,
+    createAccount,
     getAccounts,
     getAccountById,
     updateAccountBalance,
@@ -17,6 +18,8 @@ module.exports = {
 async function getUsers() { return await User.find(); }
 async function getUserByEmail(email) { return await User.findOne({ email: email }); }
 async function createUser(user) { return await User.insertMany(user); }
+
+async function createAccount(account) { return await Account.insertMany(account); }
 async function getAccounts() { return await Account.find({}); }
 async function getAccountById(id) { return await Account.findById(id); };
 async function updateAccountBalance(id, newBalance) {
@@ -26,7 +29,7 @@ async function updateAccountBalance(id, newBalance) {
 }
 async function deleteAccount(id) { return await Account.findByIdAndDelete(id); }
 
+async function createHistory(history) { return await History.insertMany(history); }
 async function getHistoryAll() { return await History.find(); }
 async function getHistoryById(id) { return await History.find({ "account_id": id }).sort([['createdAt', -1]]); }
 async function deleteHistoryById(accountId) { return await History.deleteMany({ account_id: accountId }); }
-async function createHistory(history) { return await History.insertMany(history); }
