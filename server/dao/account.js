@@ -4,9 +4,11 @@ const { User, Account, History } = require('../models');
 module.exports = {
     getUsers,
     getUserByEmail,
+    getUserByAuth,
     createUser,
     createAccount,
     getAccounts,
+    getAccountsUser,
     getAccountById,
     updateAccountBalance,
     deleteAccount,
@@ -17,10 +19,13 @@ module.exports = {
 };
 async function getUsers() { return await User.find(); }
 async function getUserByEmail(email) { return await User.findOne({ email: email }); }
+async function getUserByAuth(auth) { return await User.findOne({ auth: auth }); }
 async function createUser(user) { return await User.insertMany(user); }
 
 async function createAccount(account) { return await Account.insertMany(account); }
 async function getAccounts() { return await Account.find({}); }
+async function getAccountsUser(user) { return await Account.find({ user: user }); }
+
 async function getAccountById(id) { return await Account.findById(id); };
 async function updateAccountBalance(id, newBalance) {
     const filter = { _id: id };

@@ -21,11 +21,14 @@ function App() {
 
     async function getUserInfo(user) {
       console.log("user in getUserInfo()", user);
+
+      let auth = user.sub.substring(user.sub.indexOf('|') + 1);
+      // console.log("user sub", auth);
       try {
         const body = {
           "email": user.email,
           "name": user.name,
-          "auth": user.sub
+          "auth": auth
         };
         let userInfo = await axios.post(`${BASE_URL}/users/${user.email}`, body);
 
@@ -46,14 +49,9 @@ function App() {
 
 
   return (<div className='app'>
-
-    {appUser ? (
-      <div className='main-container'>
-        <Main user={appUser} />
-      </div>
-    ) : (
-      <p>Loading...</p>
-    )}
+    <div className='main-container'>
+      <Main user={appUser} />
+    </div>
   </div>
   );
 }

@@ -4,7 +4,7 @@ const BASE_URL = "http://localhost:3001";
 
 
 const OpenAccount = ({ user, callBack }) => {
-    console.log("user in OpenAccount.jsx", user);
+    // console.log("user in OpenAccount.jsx", user);
 
     async function openNewAccount(user, accountType) {
 
@@ -19,7 +19,7 @@ const OpenAccount = ({ user, callBack }) => {
         try {
             let newAccount = await axios.post(`${BASE_URL}/accounts`, body);
 
-            console.log(newAccount);
+            console.log("New ACC: ", newAccount);
             callBack();
         } catch (err) {
             console.log(err);
@@ -39,4 +39,3 @@ const OpenAccount = ({ user, callBack }) => {
 };
 
 export default OpenAccount;
-

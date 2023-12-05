@@ -1,11 +1,12 @@
 const { User, Account, History } = require('../models');
-const { getUsers, getUserByEmail, createUser, createAccount, getAccounts, getAccountById, updateAccountBalance, deleteAccount, getHistoryAll, getHistoryById, createHistory, deleteHistoryById } = require('../dao/account');
+const { getUsers, getUserByEmail, createUser, createAccount, getAccounts, getAccountsUser, getAccountById, updateAccountBalance, deleteAccount, getHistoryAll, getHistoryById, createHistory, deleteHistoryById } = require('../dao/account');
 module.exports = {
     getAllUsers,
-    manageOneUser,
     getOrCreateOneUser,
+    getOneUserByAuth,
     createOneUser,
     getAllAccounts,
+    getAllAccountsByUser,
     getOneAccount,
     createBankAccount,
     updateOneAccount,
@@ -26,8 +27,7 @@ async function getAllUsers(req, res) {
     }
 }
 
-
-
+//Get-or-POST one User
 async function getOrCreateOneUser(req, res) {
     console.log("Getting one user info...");
     console.log(req.body);
@@ -61,6 +61,7 @@ async function getOrCreateOneUser(req, res) {
         return res.status(500).send(error.message);
     }
 }
+
 //POST-User
 async function createOneUser(req, res) {
     console.log("Creating user...");
@@ -80,16 +81,29 @@ async function createOneUser(req, res) {
     }
 }
 
-async function manageOneUser(req, res) {
+async function getOneUserByAuth(req, res) {
 
 
 }
 
 //GET-account
 async function getAllAccounts(req, res) {
-    console.log("Getting all accounts...");
+    console.log(`Getting all accounts ...`);
     try {
         const accounts = await getAccounts();
+        console.log(accounts);
+        return res.json(accounts);
+    } catch (error) {
+        console.log(error);
+        return res.status(500).send(error.message);
+    }
+}
+
+async function getAllAccountsByUser(req, res) {
+    console.log(`Getting all accounts for user ${req.params.user}`);
+    const userId = req.params.user;
+    try {
+        const accounts = await getAccountsUser(userId);
         console.log(accounts);
         return res.json(accounts);
 

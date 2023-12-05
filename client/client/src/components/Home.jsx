@@ -10,28 +10,38 @@ export default function Home({ user }) {
     const [accounts, setAccounts] = useState([]);
 
     useEffect(() => {
-        getAllAccounts();
+        // getAllAccounts();
+        getAllAccountsByAuth();
     }, []);
 
-    const getAllAccounts = async () => {
-        //  console.log("user in homepage", user);
-        const params = {
+    // const getAllAccounts = async () => {
+    //     const allAccounts = await axios.get(`${BASE_URL}/accounts`);
+    //     console.log('all accounts in Home:', allAccounts.data);
+    //     setAccounts(allAccounts.data);
+    // };
+    const getAllAccountsByAuth = async () => {
+        console.log("user in homepage", user.auth);
+        console.log("type of user in homepage", typeof (user.auth));
+        const currentUser = user.auth;
+        // const params = {
+        //     "user": user.auth
 
-        };
-        const allAccounts = await axios.get(`${BASE_URL}/accounts`, { params });
-        // console.log('all of my accounts in Home:', allAccounts.data);
+        // };
+        const allAccounts = await axios.get(`${BASE_URL}/accounts/user/${currentUser}`);
+        console.log('all of my accounts in Home:', allAccounts.data);
         setAccounts(allAccounts.data);
+
     };
 
 
     return (
         <div>
             <div>
-                <OpenAccount callBack={getAllAccounts} user={user} accounts={accounts} />
+                <OpenAccount callBack={getAllAccountsByAuth} user={user} accounts={accounts} />
             </div>
             <div>
                 <AccountList accounts={accounts} />
             </div>
         </div>
     );
-}
+};

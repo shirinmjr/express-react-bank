@@ -16,7 +16,7 @@ const Nav = () => {
                 <Link className="nav-item app-title" to='/'><h1>Express Bank</h1></Link>
             </div>
     
-            <div className="nav-item">
+            <div className="nav-item login-btn">
                 {isAuthenticated ? <LogoutButton /> : <LoginButton />}
             </div>
         </div>
