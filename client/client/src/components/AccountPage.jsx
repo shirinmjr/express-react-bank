@@ -14,29 +14,27 @@ const Account = () => {
 
     useEffect(() => {
         if (acc) {
-            console.log(acc);
+             console.log(acc);
             getAccountInfo(acc);
         }
     }, [acc]);
 
-    async function getAccountInfo(accountNumber) {
-        console.log("getting summary for account: ", accountNumber);
-        let accountInfo = await axios.get(`${BASE_URL}/accounts/id/${accountNumber}`);
-        console.log("this is Account Info", accountInfo.data);
+    async function getAccountInfo(accountId) {
+        console.log("getting summary for account: ", accountId);
+        let accountInfo = await axios.get(`${BASE_URL}/accounts/id/${accountId}`);
+        //console.log("this is Account Info", accountInfo.data);
         setAccountInfo(accountInfo.data);
-
     }
+
     return (<div>
         <div>
             <AccountDetailsPage account={accountInfo} />
         </div>
+        <hr />
         <div>
-            <AccountForm />
+            <AccountForm account={accountInfo} />
         </div>
     </div>);
-
-
-
 };
 
 export default Account;
