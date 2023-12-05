@@ -1,16 +1,47 @@
 import { useEffect, useState } from "react";
-import { useParams } from 'react-router-dom';
+import Card from 'react-bootstrap/Card';
+import Table from 'react-bootstrap/Table';
+
 
 const AccountDetailsPage = ({ account }) => {
-    console.log("account", account);
-    // console.log("account info:", account, "Account Current Balance", account?.balance);
-    // const type = account?.type == 'SVG' ? 'Savings Account' : 'Checking Account';
-    // const status = account?.status == true ? 'Open' : 'Closed';
-
+    console.log("account detail", account);
     return (
-        <div> <h1>Here is the detail</h1>
-            {account?.accountNumber}</div>
+        <div>
+            {account ? (
+
+                <div className="account-detail-page">
+
+                    <Table striped bordered hover>
+                        <h2>Account Details</h2>
+                        <tbody>
+                            <tr>
+                                <th>Account Number</th>
+                                <td>{account.accountNumber}</td>
+                            </tr>
+                            <tr>
+                                <th>Account Balance:</th>
+                                <td>{account.balance}</td>
+                            </tr>
+                            <tr>
+                                <th>Status:</th>
+                                <td>{account.status ? "Open" : "Closed"}</td>
+                            </tr>
+                            <tr>
+                                <th>Type: </th>
+                                <td>{account.type === "SVG" ? "Savings Account" : "Checking Account"}</td>
+                            </tr>
+                        </tbody>
+                    </Table>
+
+                </div>
+            ) : (
+                <div>
+                    <p><h2>Loading account details..</h2></p>
+                </div>
+            )}
+        </div >
     );
 };
 
 export default AccountDetailsPage;
+
