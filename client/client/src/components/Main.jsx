@@ -13,18 +13,16 @@ function Main({ user }) {
                 <Nav />
             </div>
             {user ? (
-
                 <div className='Main'>
                     <Routes>
                         <Route path='/' exact={true} element={<Home user={user} />} />
                         <Route path='/about' exact={true} element={<AboutPage />} />
                         <Route path='/accounts/:acc' exact={true} element={<AccountPage />} />
-
                     </Routes>
                 </div>
             ) : (
-                    <p>Please Login</p>
-                    
+                <p>Loading...</p>
+
             )}
             <div><Footer /></div>
         </div>

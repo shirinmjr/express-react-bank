@@ -10,18 +10,18 @@ const BASE_URL = "http://localhost:3001";
 
 const Account = () => {
     const [accountInfo, setAccountInfo] = useState();
-    let params = useParams();
-    const acc = params.acc;
+    const { acc } = useParams();
 
     useEffect(() => {
         if (acc) {
+            console.log(acc);
             getAccountInfo(acc);
         }
     }, [acc]);
 
     async function getAccountInfo(accountNumber) {
         console.log("getting summary for account: ", accountNumber);
-        let accountInfo = await axios.get(`${BASE_URL}/accounts/${accountNumber}`);
+        let accountInfo = await axios.get(`${BASE_URL}/accounts/id/${accountNumber}`);
         console.log("this is Account Info", accountInfo.data);
         setAccountInfo(accountInfo.data);
 
