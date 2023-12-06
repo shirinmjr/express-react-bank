@@ -58,17 +58,15 @@ const AccountForm = () => {
 
         const { name, value } = e.target;
         setFormData((prevData) => ({ ...prevData, [name]: value }));
+        // setAction(e.target.value);
 
-        if (e.target.value == 'd' ||
-            e.target.value == 'w' ||
-            e.target.value == 't' ||
-            e.target.value == 'c'
-        ) {
-            setAction(e.target.value);
-        } else if (e.target.value == 'check' ||
-            e.target.value == 'cash') {
-            setMethod(e.target.value);
-        }
+    };
+    const handleChangeAction = (e) => {
+
+        const { name, value } = e.target;
+        setFormData((prevData) => ({ ...prevData, [name]: value }));
+        setAction(e.target.value);
+
     };
 
     const handleSubmit = (e) => {
@@ -79,13 +77,36 @@ const AccountForm = () => {
 
     return (
         <Form onSubmit={handleSubmit}>
+
             <Form.Group as={Col} className="mb-3 transaction-form">
-                {action != 'c' &&
+                {/* Action */
+                    account &&
+                    <Form.Group as={Row} className="mb-3 transaction-action" >
+                        <Form.Label>Select An Action: </Form.Label>
+                        <Form.Control
+                            as="select"
+                            name="action"
+                            required="true"
+                            value={formData.action}
+                            onChange={(event) => handleChangeAction(event)}
+                        >
+                            <option value="">Action</option>
+                            <option value="d">Deposit</option>
+                            <option value="w">Withdraw</option>
+                            <option value="t">Transfer</option>
+                            <option value="c">Close</option>
+                        </Form.Control>
+                        <Form.Text className="text-muted">*</Form.Text>
+                    </Form.Group>
+                }
+                {/* Amount */
+                    action && action != 'c' &&
                     <Form.Group as={Row} className="mb-3 transaction-amount">
                         <Form.Label>Amount: $</Form.Label>
                         <Form.Control
                             type="number"
                             name="amount"
+                            required="true"
                             value={formData.amount}
                             onChange={handleChange}
                             defaultValue={0}
@@ -94,28 +115,14 @@ const AccountForm = () => {
                     </Form.Group >
                 }
 
-                <Form.Group as={Col} className="mb-3 transaction-action" >
-                    <Form.Label>Select An Action: </Form.Label>
-                    <Form.Control
-                        as="select"
-                        name="action"
-                        value={formData.action}
-                        onChange={(event) => handleChange(event)}
-                    >
-                        <option value="">Action</option>
-                        <option value="d">Deposit</option>
-                        <option value="w">Withdraw</option>
-                        <option value="t">Transfer</option>
-                        <option value="c">Close</option>
-                    </Form.Control>
-                    <Form.Text className="text-muted">*</Form.Text>
-                </Form.Group>
-                {(action != 't' ||action != 'c' )&&
+                {/* Method */
+                    (action == 'd' || action == 'w') && formData.amount != 0 &&
                     <Form.Group as={Col} className="mb-3 transaction-method">
                         <Form.Label>Select A Method: </Form.Label>
                         <Form.Control
                             as="select"
                             name="method"
+                            required="true"
                             value={formData.method}
                             onChange={handleChange}
                         >
@@ -126,24 +133,30 @@ const AccountForm = () => {
                         <Form.Text className="text-muted">*</Form.Text>
                     </Form.Group>
                 }
-                {action == 't' &&
+
+                {/* Transfer To Accounts */
+                    action && action == 't' &&
                     <Form.Group as={Col} className="mb-3 select-transfer-account" >
                         <Form.Label>Select an Account to Transfer: </Form.Label>
                         <Form.Control
                             as="select"
                             name="transfer"
+                            required="true"
                             value={formData.transfer}
                             onChange={handleChange}
                         >
                             <option value="">Select Account</option>
-                            {transferAccounts &&
+                            {
+                                transferAccounts &&
                                 transferAccounts.map((transferAccount, index) => {
                                     return (<option key={index} value={transferAccount._id}>{transferAccount.accountNumber}</option>);
                                 })}
                         </Form.Control>
                         <Form.Text className="text-muted">*</Form.Text>
+
                     </Form.Group>
                 }
+
                 <Button type="submit" className='primary-btn btn-submit' onSubmit={handleSubmit} >
                     Submit
                 </Button>
@@ -152,8 +165,4 @@ const AccountForm = () => {
     );
 };
 
-
 export default AccountForm;
-
-//onChange={(e) => setMethod(e.target.value)}
-//onChange={(e) => setAction(e.target.value)}
