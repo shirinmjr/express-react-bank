@@ -184,9 +184,9 @@ async function updateOneAccount(req, res) {
                     let transferFromBalance = account.balance - Number(req.body.amount);
                     account = await updateAccountBalance(id, transferFromBalance);
 
-                    let accountTransfer = await getAccountById(req.body.transferTo);//Getting transfer to account details
+                    let accountTransfer = await getAccountById(req.body.transfer);//Getting transfer to account details
                     let transferToBalance = accountTransfer.balance + Number(req.body.amount);
-                    accountTransfer = await updateAccountBalance(req.body.transferTo, transferToBalance);
+                    accountTransfer = await updateAccountBalance(req.body.transfer, transferToBalance);
 
                     history.description = `Transfer to ${accountTransfer.accountNumber}`;
                     history.transactionType = `Transfer`;
