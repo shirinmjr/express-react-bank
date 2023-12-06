@@ -1,18 +1,14 @@
-import { useEffect, useState } from "react";
-import Card from 'react-bootstrap/Card';
 import Table from 'react-bootstrap/Table';
 
 
 const AccountDetailsPage = ({ account }) => {
-    console.log("account detail", account);
+    console.log("Loading account detail page...", account);
     return (
         <div>
             {account ? (
-
                 <div className="account-detail-page">
-
-                    <Table striped bordered hover>
-                        <h2>Account Details</h2>
+                    <div><h2>Account Details</h2></div>
+                    <Table>
                         <tbody>
                             <tr>
                                 <th>Account Number</th>
@@ -36,7 +32,7 @@ const AccountDetailsPage = ({ account }) => {
                 </div>
             ) : (
                 <div>
-                    <p><h2>Loading account details..</h2></p>
+                    <p>Loading account details...</p>
                 </div>
             )}
         </div >
