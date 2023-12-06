@@ -2,11 +2,10 @@ import { useEffect, useState } from "react";
 import { useParams } from 'react-router-dom';
 import AccountDetailsPage from "./AccountDetailsPage";
 import AccountForm from "./AccountForm";
+import AccountHistory from "./AccountHistory";
 
 import axios from 'axios';
 const BASE_URL = "http://localhost:3001";
-
-
 
 const Account = () => {
     const [accountInfo, setAccountInfo] = useState();
@@ -14,7 +13,7 @@ const Account = () => {
 
     useEffect(() => {
         if (acc) {
-             console.log(acc);
+            console.log(acc);
             getAccountInfo(acc);
         }
     }, [acc]);
@@ -27,12 +26,15 @@ const Account = () => {
     }
 
     return (<div>
-        <div>
+        <div className="account-page-elem">
             <AccountDetailsPage account={accountInfo} />
         </div>
         <hr />
-        <div>
+        <div className="account-page-elem">
             <AccountForm account={accountInfo} />
+        </div>
+        <div className="account-page-elem">
+            <AccountHistory account={accountInfo} />
         </div>
     </div>);
 };
