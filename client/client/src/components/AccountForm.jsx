@@ -19,7 +19,6 @@ const AccountForm = () => {
         method: '',
         transfer: '',
     });
-    const [method, setMethod] = useState();
     const [action, setAction] = useState();
     const [error, setError] = useState();
     const { acc } = useParams();
@@ -39,8 +38,8 @@ const AccountForm = () => {
     const getAccountInfo = async (acc) => {
         let accountInfo = await axios.get(`${BASE_URL}/accounts/id/${acc}`);
         setAccount(accountInfo.data);
-
     };
+
     const getAllTransferAccounts = async () => {
         console.log("Current Account Info: ", account);
         let allUserAccounts = await axios.get(`${BASE_URL}/accounts/user/${account.user}`);
@@ -69,15 +68,47 @@ const AccountForm = () => {
 
     };
 
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault();
-
         console.log('Form submitted:', formData);
+        // formData.method
+        console.log(formData.action);
+        switch (formData.action) {
+            case 'd':
+                console.log('Depositing to ', account._id);
+                await axios.put(`${BASE_URL}/accounts/${account._id}`, formData);
+                break;
+            case 'w':
+                console.log('Withdrawing from ', account._id);
+                try {
+                    await axios.put(`${BASE_URL}/accounts/${account._id}`, formData);
+                } catch (error) {
+                    setError(error.response.data);
+                }
+                break;
+            case 't':
+                try {
+                    console.log('Transferring from ', account._id, 'to', formData.transfer);
+                    await axios.put(`${BASE_URL}/accounts/${account._id}`, formData);
+                } catch (error) {
+                    setError(error.response.data);
+                }
+                break;
+            case 'c':
+                console.log('Close account ', account._id);
+                try {
+                    await axios.delete(`${BASE_URL}/accounts/${account._id}`);
+                    window.location.href = '../'; //one level up
+                } catch (error) {
+                    setError(error.response.data);
+                }
+                break;
+        }
     };
 
     return (
         <Form onSubmit={handleSubmit}>
-
+            <h2>I want to:</h2>
             <Form.Group as={Col} className="mb-3 transaction-form">
                 {/* Action */
                     account &&
@@ -86,7 +117,7 @@ const AccountForm = () => {
                         <Form.Control
                             as="select"
                             name="action"
-                            required="true"
+                            required={true}
                             value={formData.action}
                             onChange={(event) => handleChangeAction(event)}
                         >
@@ -106,10 +137,9 @@ const AccountForm = () => {
                         <Form.Control
                             type="number"
                             name="amount"
-                            required="true"
+                            required={true}
                             value={formData.amount}
                             onChange={handleChange}
-                            defaultValue={0}
                         />
                         <Form.Text className="text-muted">*</Form.Text>
                     </Form.Group >
@@ -122,7 +152,7 @@ const AccountForm = () => {
                         <Form.Control
                             as="select"
                             name="method"
-                            required="true"
+                            required={true}
                             value={formData.method}
                             onChange={handleChange}
                         >
@@ -141,7 +171,7 @@ const AccountForm = () => {
                         <Form.Control
                             as="select"
                             name="transfer"
-                            required="true"
+                            required={true}
                             value={formData.transfer}
                             onChange={handleChange}
                         >

@@ -9,12 +9,14 @@ const BASE_URL = "http://localhost:3001";
 
 const Account = () => {
     const [accountInfo, setAccountInfo] = useState();
+    const [accountHistory, setAccountHistory] = useState();
     const { acc } = useParams();
 
     useEffect(() => {
         if (acc) {
             console.log(acc);
             getAccountInfo(acc);
+            getAccountHistory(acc);
         }
     }, [acc]);
 
@@ -23,6 +25,13 @@ const Account = () => {
         let accountInfo = await axios.get(`${BASE_URL}/accounts/id/${accountId}`);
         //console.log("this is Account Info", accountInfo.data);
         setAccountInfo(accountInfo.data);
+    }
+
+    async function getAccountHistory(accountId) {
+        console.log("getting History for account: ", accountId);
+        let accountHistoryInfo = await axios.get(`${BASE_URL}/histories/${accountId}`);
+        setAccountHistory(accountHistoryInfo.data);
+
     }
 
     return (<div>
@@ -34,7 +43,7 @@ const Account = () => {
             <AccountForm account={accountInfo} />
         </div>
         <div className="account-page-elem">
-            <AccountHistory account={accountInfo} />
+            <AccountHistory accountHistory={accountHistory} />
         </div>
     </div>);
 };
