@@ -20,6 +20,10 @@ const Account = () => {
         }
     }, [acc]);
 
+    useEffect(() => {
+        getAccountHistory(acc);
+    }, [accountInfo]);
+
     async function getAccountInfo(accountId) {
         console.log("getting summary for account: ", accountId);
         let accountInfo = await axios.get(`${BASE_URL}/accounts/id/${accountId}`);
@@ -40,7 +44,7 @@ const Account = () => {
         </div>
         <hr />
         <div className="account-page-elem">
-            <AccountForm account={accountInfo} />
+            <AccountForm callBack={getAccountInfo} />
         </div>
         <div className="account-page-elem">
             <AccountHistory accountHistory={accountHistory} />

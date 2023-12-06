@@ -1,24 +1,21 @@
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import axios from 'axios';
-import Spinner from 'react-bootstrap/Spinner';
 import Form from 'react-bootstrap/Form';
-import InputGroup from 'react-bootstrap/InputGroup';
 import Button from 'react-bootstrap/Button';
 import Col from 'react-bootstrap/Col';
 import Row from 'react-bootstrap/Row';
 const BASE_URL = "http://localhost:3001";
 
-const AccountForm = () => {
-
-    const [account, setAccount] = useState();
-    const [transferAccounts, setTransferAccounts] = useState([]);
+const AccountForm = ({ callBack }) => {
     const [formData, setFormData] = useState({
         amount: '',
         action: '',
         method: '',
         transfer: '',
     });
+    const [account, setAccount] = useState();
+    const [transferAccounts, setTransferAccounts] = useState([]);
     const [action, setAction] = useState();
     const [error, setError] = useState();
     const { acc } = useParams();
@@ -44,39 +41,30 @@ const AccountForm = () => {
         console.log("Current Account Info: ", account);
         let allUserAccounts = await axios.get(`${BASE_URL}/accounts/user/${account.user}`);
         let transferToAccounts = allUserAccounts.data.filter((acc => acc._id != account._id));
-        //console.log('all accounts', allUserAccounts.data);
-        //console.log('all transfer to accounts', transferToAccounts);
         setTransferAccounts(transferToAccounts);
     };
 
-
-
-
-
     const handleChange = (e) => {
-
         const { name, value } = e.target;
         setFormData((prevData) => ({ ...prevData, [name]: value }));
-        // setAction(e.target.value);
-
     };
     const handleChangeAction = (e) => {
-
         const { name, value } = e.target;
         setFormData((prevData) => ({ ...prevData, [name]: value }));
         setAction(e.target.value);
-
     };
 
     const handleSubmit = async (e) => {
         e.preventDefault();
         console.log('Form submitted:', formData);
-        // formData.method
-        console.log(formData.action);
         switch (formData.action) {
             case 'd':
                 console.log('Depositing to ', account._id);
-                await axios.put(`${BASE_URL}/accounts/${account._id}`, formData);
+                try {
+                    await axios.put(`${BASE_URL}/accounts/${account._id}`, formData);
+                } catch (error) {
+                    setError(error.response.data);
+                }
                 break;
             case 'w':
                 console.log('Withdrawing from ', account._id);
@@ -104,10 +92,12 @@ const AccountForm = () => {
                 }
                 break;
         }
+        callBack(account._id);
     };
 
     return (
         <Form onSubmit={handleSubmit}>
+            {error}
             <h2>I want to:</h2>
             <Form.Group as={Col} className="mb-3 transaction-form">
                 {/* Action */
@@ -186,10 +176,11 @@ const AccountForm = () => {
 
                     </Form.Group>
                 }
-
-                <Button type="submit" className='primary-btn btn-submit' onSubmit={handleSubmit} >
-                    Submit
-                </Button>
+                {((action == 'c') || (action != 'c' && formData.amount != 0)) &&
+                    <Button type="submit" className='primary-btn btn-submit' onSubmit={handleSubmit} >
+                        Submit
+                    </Button>
+                }
             </Form.Group>
         </Form>
     );
