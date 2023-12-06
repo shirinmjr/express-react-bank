@@ -10,129 +10,140 @@ import Row from 'react-bootstrap/Row';
 const BASE_URL = "http://localhost:3001";
 
 const AccountForm = () => {
-    const [formData, setFormData] = useState({});
-    const [account, setAccount] = useState();
-    // const [method, setMethod] = useState();
-    // const [action, setAction] = useState();
-    const [transferAccounts, setTransferAccounts] = useState();
 
+    const [account, setAccount] = useState();
+    const [transferAccounts, setTransferAccounts] = useState([]);
+    const [formData, setFormData] = useState({
+        amount: '',
+        action: '',
+        method: '',
+        transfer: '',
+    });
+    const [method, setMethod] = useState();
+    const [action, setAction] = useState();
     const [error, setError] = useState();
     const { acc } = useParams();
 
     useEffect(() => {
-        // setCurrentAccount(account);
-        // if (account) {
-        //     console.log("account Info in account form", account.account.user);
-        getAllTransferAccounts(acc);
-        // }
-
-
-    }, [acc]);
-
-    const getAllTransferAccounts = async (acc) => {
-        let accountInfo = await axios.get(`${BASE_URL}/accounts/id/${acc}`);
-        setAccount(accountInfo.data).then(account => {
-            let allUserAccounts = await axios.get(`${BASE_URL}/accounts/user/${account.user}`);
-            let transferToAccounts = allUserAccounts.data.filter((t_acc => t_acc._id != account._id));
-            setTransferAccounts(transferToAccounts);
-            //allUserAccounts.data.forEach(item => console.log(item.accountNumber));  
+        if (acc) {
+            getAccountInfo(acc);
         }
+    }, []);
 
-        );
+    useEffect(() => {
+        if (account) {
+            getAllTransferAccounts();
+        }
+    }, [account]);
 
+    const getAccountInfo = async (acc) => {
+        let accountInfo = await axios.get(`${BASE_URL}/accounts/id/${acc}`);
+        setAccount(accountInfo.data);
 
-
-        console.log('all accounts', allUserAccounts.data);
-        console.log('transfer accounts', transferAccounts);
-
-        //  {transferAccounts.forEach((accountSelect) => {
-        //    return (<option value="">Select</option>);
-        //    })}
-
-
-        //const toAcc = allAccounts.data.filter(acc => acc.accountNumber != account.accountNumber);
-
-        // setTransferAccounts(transferToAcc);
-        //  console.log('all of my transfer to accounts in account form:', transferAccounts);
+    };
+    const getAllTransferAccounts = async () => {
+        console.log("Current Account Info: ", account);
+        let allUserAccounts = await axios.get(`${BASE_URL}/accounts/user/${account.user}`);
+        let transferToAccounts = allUserAccounts.data.filter((acc => acc._id != account._id));
+        //console.log('all accounts', allUserAccounts.data);
+        //console.log('all transfer to accounts', transferToAccounts);
+        setTransferAccounts(transferToAccounts);
     };
 
 
 
 
-    const handleInputChange = (e) => {
-        console.log("form change");
-        // console.log("method", method);
-        // console.log("action", action);
-        //     const { name, value } = e.target;
-        //     switch (name) {
-        //         case 'deposit':
-        //             switch (value) {
-        //                 case 'd':
-        //                     break;
-        //                 case 'w':
-        //                     break;
-        //                 case 't':
-        //                     break;
-        //             }
-        //             break;
-        //             case 'deposit':
 
+    const handleChange = (e) => {
 
-        //     }
-        //     //setFormData({ ...formData, [amount]: value });
+        const { name, value } = e.target;
+        setFormData((prevData) => ({ ...prevData, [name]: value }));
+
+        if (e.target.value == 'd' ||
+            e.target.value == 'w' ||
+            e.target.value == 't' ||
+            e.target.value == 'c'
+        ) {
+            setAction(e.target.value);
+        } else if (e.target.value == 'check' ||
+            e.target.value == 'cash') {
+            setMethod(e.target.value);
+        }
     };
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        console.log(e.target.value);
+
         console.log('Form submitted:', formData);
-        // setFormData({
-        //     amount: e.target.amount,
-        //     transactionType: 'deposit',
-        // });
     };
 
     return (
         <Form onSubmit={handleSubmit}>
             <Form.Group as={Col} className="mb-3 transaction-form">
+                {action != 'c' &&
+                    <Form.Group as={Row} className="mb-3 transaction-amount">
+                        <Form.Label>Amount: $</Form.Label>
+                        <Form.Control
+                            type="number"
+                            name="amount"
+                            value={formData.amount}
+                            onChange={handleChange}
+                            defaultValue={0}
+                        />
+                        <Form.Text className="text-muted">*</Form.Text>
+                    </Form.Group >
+                }
 
-                <InputGroup as={Row} className="mb-3 transaction-amount" controlid="amount">
-                    <Form.Label>Amount: $</Form.Label>
-                    <Form.Control type="number" placeholder="Enter amount" />
-                    <Form.Text className="text-muted"> *</Form.Text>
-                </InputGroup>
-
-                <Form.Group as={Col} className="mb-3 transaction-action" controlid="action">
+                <Form.Group as={Col} className="mb-3 transaction-action" >
                     <Form.Label>Select An Action: </Form.Label>
-                    <Form.Select defaultValue="" size="lg" onChange={(e) => setAction(e.target.value)}>
+                    <Form.Control
+                        as="select"
+                        name="action"
+                        value={formData.action}
+                        onChange={(event) => handleChange(event)}
+                    >
                         <option value="">Action</option>
                         <option value="d">Deposit</option>
                         <option value="w">Withdraw</option>
                         <option value="t">Transfer</option>
                         <option value="c">Close</option>
-                    </Form.Select>
+                    </Form.Control>
                     <Form.Text className="text-muted">*</Form.Text>
                 </Form.Group>
-
-                <Form.Group as={Col} className="mb-3 transaction-method" controlid="method">
-                    <Form.Label>Select A Method: </Form.Label>
-                    <Form.Select defaultValue="" size="lg" onChange={(e) => setMethod(e.target.value)}>
-                        <option value="">Method</option>
-                        <option value="check">Check</option>
-                        <option value="cash">Cash</option>
-                    </Form.Select>
-                    <Form.Text className="text-muted">*</Form.Text>
-                </Form.Group>
-
-                <Form.Group as={Col} className="mb-3 select-transfer-account" controlid="transferTo">
-                    <Form.Label>Select an Account to Transfer: </Form.Label>
-                    <Form.Select defaultValue="" >
-
-
-                    </Form.Select>
-                    <Form.Text className="text-muted">*</Form.Text>
-                </Form.Group>
-
+                {(action != 't' ||action != 'c' )&&
+                    <Form.Group as={Col} className="mb-3 transaction-method">
+                        <Form.Label>Select A Method: </Form.Label>
+                        <Form.Control
+                            as="select"
+                            name="method"
+                            value={formData.method}
+                            onChange={handleChange}
+                        >
+                            <option value="">Method</option>
+                            <option value="check">Check</option>
+                            <option value="cash">Cash</option>
+                        </Form.Control>
+                        <Form.Text className="text-muted">*</Form.Text>
+                    </Form.Group>
+                }
+                {action == 't' &&
+                    <Form.Group as={Col} className="mb-3 select-transfer-account" >
+                        <Form.Label>Select an Account to Transfer: </Form.Label>
+                        <Form.Control
+                            as="select"
+                            name="transfer"
+                            value={formData.transfer}
+                            onChange={handleChange}
+                        >
+                            <option value="">Select Account</option>
+                            {transferAccounts &&
+                                transferAccounts.map((transferAccount, index) => {
+                                    return (<option key={index} value={transferAccount._id}>{transferAccount.accountNumber}</option>);
+                                })}
+                        </Form.Control>
+                        <Form.Text className="text-muted">*</Form.Text>
+                    </Form.Group>
+                }
                 <Button type="submit" className='primary-btn btn-submit' onSubmit={handleSubmit} >
                     Submit
                 </Button>
@@ -143,3 +154,6 @@ const AccountForm = () => {
 
 
 export default AccountForm;
+
+//onChange={(e) => setMethod(e.target.value)}
+//onChange={(e) => setAction(e.target.value)}
