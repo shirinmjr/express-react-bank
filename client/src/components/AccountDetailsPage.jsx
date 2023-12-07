@@ -28,7 +28,6 @@ const AccountDetailsPage = ({ account }) => {
                             </tr>
                         </tbody>
                     </Table>
-
                 </div>
             ) : (
                 <div>

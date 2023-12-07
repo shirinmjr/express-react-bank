@@ -127,7 +127,6 @@ Goals <a name = "#goals"></a>
 
 1. Account history gets updated as transactions happened (✓)
 2. User can transfer money from one account to another account and can see a history record on bot(to/from) accounts (✓)
-3. There is no business logic handled in the front-end (✓)
 
 Previews:
 
@@ -153,9 +152,19 @@ Previews:
 make sure you have live Server extension installed
 
 
-1. User can login (Google Auth)
-2. Migrate UI from ES6 to React
-3. 
+1. User can login (Google Auth) (✓)
+2. User can login (GitHub) (✓)
+3. Migrate UI from ES6 to React (✓)
+4. There is no business logic handled in the front-end (✓)
+5. Both front-end and back-end are managed in the same repo (✓)
+
+### Stretch Goals<a name = "#stretch_goals"></a>
+
+1. Account history displays in pagination
+2. Account history can be searched
+3. Account history can be filtered
+4. Improve styling (mobile friendly)
+
 
 ### Stretch Goals - it's always a nice surprise!
 <p align="center">
