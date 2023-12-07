@@ -28,8 +28,8 @@
 - [Versions:](#versions)
   - 🔧 [V1](#v1)
     - [Built Using](built_using_v1)
-    - [Goals]
-    - [Streach Goals]
+    - [Goals](goals)
+    - [Stretch Goals](strech_goals)
   - 🔧 [V2](#v2)
     - [Built Using](built_using_v2)  
 - [Authors](#authors)
@@ -113,7 +113,7 @@ module.exports = db;
 
 make sure you have live Server extension installed
 
-Goals:
+Goals <a name = "#goals"></a>
 
 1. Create one user total (✓)
 2. User can create new account by selecting _Create A New Account_ button (Saving / Checking) (✓)
@@ -123,7 +123,8 @@ Goals:
 6. User can delete their account but they need to transfer the balance before that. Balance need to be 0 before request to close an account (✓)
 7. User can see a history of transactions in their account page(reflecting account transactions). (✓)
 
-### Stretch Goals - it's always a nice surprise!
+### Stretch Goals<a name = "#stretch_goals"></a>
+
 1. Account history gets updated as transactions happened (✓)
 2. User can transfer money from one account to another account and can see a history record on bot(to/from) accounts (✓)
 3. There is no business logic handled in the front-end (✓)
@@ -157,7 +158,11 @@ make sure you have live Server extension installed
 3. 
 
 ### Stretch Goals - it's always a nice surprise!
-
+<p align="center">
+ <img width=200px src="./readmefiles/designimg/v2-login.png" alt="v1-data-structure">
+ <img width=500px src="./readmefiles/designimg/v2-basicUI.png" alt="v1-basic-ui">
+  <img width=500px src="./readmefiles/designimg/v2-userAccount.png" alt="homepage">
+</p>
 ## 🚀 Run & Deployment <a name = "deployment"></a>
 
 Add additional notes about how to deploy this on a live system.
