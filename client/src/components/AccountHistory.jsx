@@ -5,22 +5,22 @@ import Table from "react-bootstrap/esm/Table";
 const AccountHistory = ({ accountHistory = [] }) => {
 
     return (<div>
-        <h2>Account History</h2>
-        <div>
-            <table>
+        <div className='title'>Account History</div>
+        <div className="history-table-content">
+            <table className="history-table">
                 <header>
-                    <th>
-                        <td>Date</td>
-                        <td>Transaction</td>
-                        <td>Method</td>
-                        <td>Description</td>
-                        <td>Amount</td>
+                    <th className="history-th">
+                        <td className="history-td">Date</td>
+                        <td className="history-td">Transaction</td>
+                        <td className="history-td">Method</td>
+                        <td className="history-td">Description</td>
+                        <td className="history-td">Amount</td>
                     </th>
                 </header>
                 <tbody>
                     {accountHistory.map((history) => {
                         return (<div>
-                            <tr>
+                            <tr className="history-tr">
                                 <td>{history.createdAt}</td>
                                 <td>{history.transactionType}</td>
                                 <td>{history.method}</td>

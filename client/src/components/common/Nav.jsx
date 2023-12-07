@@ -8,15 +8,14 @@ const Nav = () => {
     const { isAuthenticated } = useAuth0();
 
     return (
-        <div className="navbar">
-            <div>
+        <div className="nav-container">
+            <div className="nav-item profile">
                 <Profile />
             </div>
-            <div>
-                <Link className="nav-item app-title" to='/'><h1>Express Bank</h1></Link>
+            <div className="nav-item">
+                <Link className="app-title" to='/'>Express Bank</Link>
             </div>
-    
-            <div className="nav-item login-btn">
+            <div className="nav-item login-btn primary-btn">
                 {isAuthenticated ? <LogoutButton /> : <LoginButton />}
             </div>
         </div>

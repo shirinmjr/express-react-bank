@@ -1,4 +1,4 @@
-import { Route, Routes, useRevalidator } from "react-router-dom";
+import { Route, Routes } from "react-router-dom";
 import Nav from "./common/Nav";
 import Home from "./Home";
 import AboutPage from "./AboutPage";
@@ -9,11 +9,11 @@ import Footer from "./common/Footer";
 function Main({ user }) {
     return (
         <div>
-            <div className='header-container'>
+            <div className='navbar'>
                 <Nav />
             </div>
             {user ? (
-                <div className='Main'>
+                <div className='routes-container'>
                     <Routes>
                         <Route path='/' exact={true} element={<Home user={user} />} />
                         <Route path='/about' exact={true} element={<AboutPage />} />
@@ -21,10 +21,11 @@ function Main({ user }) {
                     </Routes>
                 </div>
             ) : (
-                <p>Loading...</p>
-
+                <div className="loading">
+                    <p>Loading...</p>
+                </div>
             )}
-            <div><Footer /></div>
+            <div className='footer'><Footer /></div>
         </div>
     );
 }

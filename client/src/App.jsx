@@ -5,8 +5,6 @@ import './App.css';
 import axios from 'axios';
 const BASE_URL = "http://localhost:3001";
 
-
-
 function App() {
   const { user, isAuthenticated } = useAuth0();
   const [appUser, setAppUser] = useState();
@@ -23,7 +21,6 @@ function App() {
       console.log("user in getUserInfo()", user);
 
       let auth = user.sub.substring(user.sub.indexOf('|') + 1);
-      // console.log("user sub", auth);
       try {
         const body = {
           "email": user.email,
@@ -31,28 +28,17 @@ function App() {
           "auth": auth
         };
         let userInfo = await axios.post(`${BASE_URL}/users/${user.email}`, body);
-
         setAppUser(userInfo.data);
-
-
-
       } catch (error) {
         console.log(error);
       }
     }
   }, [isAuthenticated, appUser]);
 
-  // useEffect(() => { 
-  //   console.log(appUser);
-  // },[appUser])
-
-
-
-  return (<div className='app'>
+  return (
     <div className='main-container'>
       <Main user={appUser} />
     </div>
-  </div>
   );
 }
 

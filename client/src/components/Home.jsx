@@ -18,11 +18,11 @@ export default function Home({ user }) {
     };
 
     return (
-        <div>
-            <div>
+        <div className='home-container'>
+            <div className='open-account'>
                 <OpenAccount callBack={getAllAccountsByUser} user={user} accounts={accounts} />
             </div>
-            <div>
+            <div className='accounts'>
                 <AccountList accounts={accounts} />
             </div>
         </div>

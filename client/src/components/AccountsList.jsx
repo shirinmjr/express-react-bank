@@ -8,7 +8,7 @@ const AccountsList = ({ accounts }) => {
 
 
     return (
-        <div className="accounts-container">
+        <div className="accounts-list-container">
 
             {accounts.map((account, index) => (<Link key={index} className='button account-link' to={
                 `/accounts/${account._id}`}>

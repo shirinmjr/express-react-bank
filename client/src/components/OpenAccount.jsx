@@ -4,8 +4,7 @@ const BASE_URL = "http://localhost:3001";
 
 
 const OpenAccount = ({ user, callBack }) => {
-    // console.log("user in OpenAccount.jsx", user);
-
+    
     async function openNewAccount(user, accountType) {
 
         console.log(`creating a new ${accountType === "SVG" ? "Savings" : "Checking"} account...`);
