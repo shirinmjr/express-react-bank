@@ -38,7 +38,7 @@ const Account = () => {
 
     }
 
-    return (<div>
+    return (<div className="account-page-container">
         <div className="account-page-elem">
             <AccountDetailsPage account={accountInfo} />
         </div>

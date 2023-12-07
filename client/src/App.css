@@ -1,0 +1,187 @@
+.main-container{
+  display: grid;
+  min-height: 100vh;
+  grid-template-rows: max-content 1fr;
+  background-color: #FFFFFF;
+}
+/* .navbar{
+  display:flex;
+} */
+/* ======= Primary ===========*/
+
+.primary-btn{
+  background-color: #B31942;
+  border-radius: 5px;
+  border: 1px solid #FFFFFF;
+  color: #FFFFFF;
+  font-weight:bolder;
+  line-height: 25px;
+  padding: none;
+  margin:auto;
+  /* box-shadow: 0 8px 16px 0 rgba(255, 255, 255, 0.707), 0 6px 20px 0 rgba(0, 0, 0, 0.19); */
+  cursor: pointer;
+  -webkit-transition-duration: 0.4s; /* Safari */
+  transition-duration: 0.4s;
+  text-wrap: nowrap;
+}
+.primary-btn:hover {
+  box-shadow: 0 30px 36px 0 #0A3161, 0 17px 50px 0 #0A3161;
+}
+
+.title{
+  font-size: 16px;
+  font-weight: bolder;
+}
+
+/* =======NAV Bar========= */
+.nav-container{
+
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #0A3161;
+  font-family:Georgia, 'Times New Roman', Times, serif;
+}
+.nav-item{
+  text-wrap: nowrap;
+  margin:auto;
+}
+.nav-item:hover {
+  color:#FFFFFF;
+ } 
+.app-title{
+  font-size: 40px;
+  text-decoration: none;
+  color:#FFFFFF;
+}
+/* .profile{} */
+.profile-container{
+margin:12px 0px;
+}
+.profile-item{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: auto;
+  padding: 0;
+}
+.profile-img{
+  border-radius: 5em;
+  padding: 10px;
+  width: 70px;
+}
+/* =======Footer========= */
+/* .footer{} */
+.footer-container{
+  display: flex;
+  align-items: center;
+  flex-direction:column-reverse;
+  font-size: 20px;
+  margin: 0;
+  padding: 20px;
+  background-color: #0A3161;
+}
+.github-logo{  
+  border-radius: 5em;
+  padding: 0px;
+  margin: 0px;
+  width: 20px;
+}
+/*== HOME ====*/
+.home-container{
+
+}
+.new-account-buttons{
+  display: flex;
+  justify-content:space-around;
+    flex-wrap: wrap;
+}
+.new-svg-btn , .new-chk-btn{
+margin: 0px;
+}
+
+.card {
+  background-color: #0A3161;
+  border: solid 5px #B31942;
+  font-size: 20px;
+font-family:serif;
+  border-radius: 1em;
+  color:#FFFFFF;
+  transition-duration: 0.5s;
+  margin: 20px;
+  padding: 20px;
+}
+.card:hover {
+  box-shadow: 0 30px 36px 0 rgba(0, 0, 0, 0.24), 0 17px 50px 0 rgba(0, 0, 0, 0.19);
+}
+
+.account-page-container,.account-detail-container{
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  color: black;
+  margin: auto;
+  padding: 10px;
+}
+.accounts-list-container{
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  margin: auto;
+}
+
+.account-detail-container{
+  display: flex;
+  justify-content: center;
+  margin: auto;
+}
+.history-table{
+  display: flex;
+  flex-direction: column;
+  border:1px solid #0A3161;
+ 
+}
+.history-tr,.history-th{
+display: flex;
+flex-direction: row;
+justify-content: space-evenly;
+}
+
+
+@media (max-width:480px)  { 
+  /* smartphones, portrait iPhone, portrait 480x320 phones (Android) */
+  .main-container{
+  font-size: 12px;
+  }
+  .app-title{
+    font-size: 20px;
+  }
+  .profile-img{
+    width: 40px;
+  }
+  .footer-container{
+    
+   font-size: 10px;
+   padding: 5px;
+  }
+
+
+  .github-logo{  
+  display: none;
+  }
+  .new-account-buttons{
+    display: flex;
+    flex-direction:column;
+    justify-content: center;
+  }
+  .card {
+    font-size: 15px;
+ 
+  }
+
+}
+@media (min-width:480px)  { /* smartphones, Android phones, landscape iPhone */ }
+@media (min-width:600px)  { /* portrait tablets, portrait iPad, e-readers (Nook/Kindle), landscape 800x480 phones (Android) */ }
+@media (min-width:801px)  { /* tablet, landscape iPad, lo-res laptops ands desktops */ }
+@media (min-width:1025px) { /* big landscape tablets, laptops, and desktops */ }
+@media (min-width:1281px) { /* hi-res laptops and desktops */ }

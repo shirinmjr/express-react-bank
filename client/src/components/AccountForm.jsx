@@ -98,7 +98,7 @@ const AccountForm = ({ callBack }) => {
     return (
         <Form onSubmit={handleSubmit}>
             {error}
-            <h2>I want to:</h2>
+            <div className='title'>I want to:</div>
             <Form.Group as={Col} className="mb-3 transaction-form">
                 {/* Action */
                     account &&

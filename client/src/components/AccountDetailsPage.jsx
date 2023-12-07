@@ -6,8 +6,8 @@ const AccountDetailsPage = ({ account }) => {
     return (
         <div>
             {account ? (
-                <div className="account-detail-page">
-                    <div><h2>Account Details</h2></div>
+                <div className="account-detail-container">
+                    <div className='title'>Account Details</div>
                     <Table>
                         <tbody>
                             <tr>
