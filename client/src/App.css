@@ -89,7 +89,7 @@ margin:12px 0px;
 }
 /*== HOME ====*/
 .home-container{
-
+min-height: 700px;
 }
 .new-account-buttons{
   display: flex;

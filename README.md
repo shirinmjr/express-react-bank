@@ -164,6 +164,7 @@ make sure you have live Server extension installed
 2. Account history can be searched
 3. Account history can be filtered
 4. Improve styling (mobile friendly)
+5. Run it as an expo project
 
 
 ### Stretch Goals - it's always a nice surprise!
