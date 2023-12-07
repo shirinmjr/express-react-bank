@@ -18,13 +18,24 @@ export default function Home({ user }) {
     };
 
     return (
-        <div className='home-container'>
-            <div className='open-account'>
-                <OpenAccount callBack={getAllAccountsByUser} user={user} accounts={accounts} />
-            </div>
-            <div className='accounts'>
-                <AccountList accounts={accounts} />
-            </div>
+
+        <div className='home-container' >
+            {user ? (
+                <div>
+                    <div className='open-account'>
+
+                        <OpenAccount callBack={getAllAccountsByUser} user={user} accounts={accounts} />
+                    </div>
+                    <div className='accounts'>
+                        <AccountList accounts={accounts} />
+                    </div>
+                </div>
+            ) : (
+                <div className="login">
+                    <p>Login</p>
+                </div>
+            )}
         </div>
+
     );
-};
+}

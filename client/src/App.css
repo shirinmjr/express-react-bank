@@ -33,6 +33,10 @@
   font-weight: bolder;
 }
 
+.loading{
+  min-height: 600px;
+}
+
 /* =======NAV Bar========= */
 .nav-container{
 
